@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>النجاح الرقمي - خدمات البرمجة والتصميم والتعليم الإلكتروني</title>
+        <title> FreelanceOS - خدمات البرمجة والتصميم والتعليم الإلكتروني</title>
         <meta name="description" content="فريق متخصص في البرمجة، التصميم، والتعليم الإلكتروني. نقدم حلولًا عملية ومبتكرة تساعد الأفراد والشركات على النمو والتوسع في السوق الرقمي." />
         <meta name="keywords" content="برمجة, تصميم, تعليم إلكتروني, مواقع ويب, تطبيقات, هوية بصرية, تيك توك, مصر" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -14,14 +14,13 @@ async function findAndUpdateOrder(transactionData) {
     throw new Error('No email found in transaction data to match order.')
   }
 
-  // Find the most recent pending order for this email and amount
+  // Find the most recent pending order for this email
   const { data: order, error: findError } = await supabaseAdmin
-    .from('orders')
-    .select('id')
+    .from('ordersbook') // Use the new table name
+    .select('id, name, email')
     .eq('email', customerEmail)
-    .eq('payment_status', 'pending')
-    .eq('amount_cents', amountCents)
-    .order('created_at', { ascending: false })
+    .eq('payment', 'waiting') // Use the new status field
+    .order('timestamp', { ascending: false }) // Use the new timestamp field
     .limit(1)
     .single()
 
@@ -34,11 +33,10 @@ async function findAndUpdateOrder(transactionData) {
 
   // Update the found order
   const { error: updateError } = await supabaseAdmin
-    .from('orders')
+    .from('ordersbook') // Use the new table name
     .update({
-      payment_status: transactionData.success ? 'completed' : 'failed',
-      paymob_transaction_id: transactionData.id,
-      updated_at: new Date().toISOString()
+      payment: transactionData.success ? 'completed' : 'failed',
+      // You might want to add a field for paymob_transaction_id in your new table
     })
     .eq('id', order.id)
 
@@ -47,7 +45,7 @@ async function findAndUpdateOrder(transactionData) {
     throw new Error(`Failed to update order ${order.id}`)
   }
 
-  return { success: true, order_id: order.id, email: customerEmail, name: transactionData.billing_data.first_name }
+  return { success: true, order_id: order.id, email: order.email, name: order.name }
 }
 
 export default async function handler(req, res) {

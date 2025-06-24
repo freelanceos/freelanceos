@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { email, name, order_id } = req.body
+    const { email, name, phone, order_id } = req.body
     const resendApiKey = process.env.RESEND_API_KEY
 
     // Check if Resend is configured
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 
     // Email to customer
     await resend.emails.send({
-      from: 'noreply@yourdomain.com',
+      from: 'FreelanceOS <admin@freelanceos.online>',
       to: email,
       subject: 'تم تأكيد طلبك - كتاب رحلة الانتشار',
       html: `
@@ -41,13 +41,14 @@ export default async function handler(req, res) {
     const adminEmail = process.env.ADMIN_EMAIL
     if (adminEmail && adminEmail !== 'admin@example.com') {
       await resend.emails.send({
-        from: 'noreply@yourdomain.com',
+        from: 'FreelanceOS <admin@freelanceos.online>',
         to: adminEmail,
         subject: 'طلب جديد - كتاب رحلة الانتشار',
         html: `
           <h2>طلب جديد تم تأكيده</h2>
           <p><strong>الاسم:</strong> ${name}</p>
           <p><strong>الإيميل:</strong> ${email}</p>
+          <p><strong>رقم الهاتف:</strong> ${phone}</p>
           <p><strong>رقم الطلب:</strong> ${order_id}</p>
         `
       })

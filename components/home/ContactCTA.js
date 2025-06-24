@@ -31,7 +31,7 @@ export default function ContactCTA() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false)
@@ -64,7 +64,7 @@ export default function ContactCTA() {
             {/* Contact Info */}
             <div className="text-white">
               <h3 className="text-2xl font-bold mb-8">تواصل معنا</h3>
-              
+
               <div className="space-y-6 mb-12">
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center ml-4">
@@ -72,20 +72,20 @@ export default function ContactCTA() {
                   </div>
                   <div>
                     <div className="font-semibold">واتساب</div>
-                    <div className="opacity-80">+201234567890</div>
+                    <div className="opacity-80">+201002100785</div>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center ml-4">
                     <span className="text-2xl">✉️</span>
                   </div>
                   <div>
                     <div className="font-semibold">البريد الإلكتروني</div>
-                    <div className="opacity-80">hello@yourcompany.com</div>
+                    <div className="opacity-80">admin@freelanceos.online</div>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center ml-4">
                     <span className="text-2xl">🕐</span>
@@ -132,7 +132,7 @@ export default function ContactCTA() {
                   <p className="text-gray-600 mb-6">
                     سنتواصل معك خلال 24 ساعة لمناقشة مشروعك
                   </p>
-                  <button 
+                  <button
                     onClick={() => setSubmitted(false)}
                     className="text-blue-600 hover:text-blue-700 font-semibold"
                   >
@@ -181,7 +181,7 @@ export default function ContactCTA() {
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="+201234567890"
+                        placeholder="+201002100785"
                         required
                       />
                     </div>
@@ -221,11 +221,10 @@ export default function ContactCTA() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all duration-300 ${
-                      isSubmitting
-                        ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transform hover:scale-105'
-                    } text-white shadow-lg`}
+                    className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all duration-300 ${isSubmitting
+                      ? 'bg-gray-400 cursor-not-allowed'
+                      : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transform hover:scale-105'
+                      } text-white shadow-lg`}
                   >
                     {isSubmitting ? (
                       <span className="flex items-center justify-center">
@@ -244,17 +243,7 @@ export default function ContactCTA() {
                     بإرسال هذا النموذج، توافق على سياسة الخصوصية الخاصة بنا
                   </p>
 
-                  {/* Development Testing Link */}
-                  {process.env.NODE_ENV === 'development' && (
-                    <div className="border-t pt-4 mt-4">
-                      <a 
-                        href="/test-payment" 
-                        className="text-xs text-blue-600 hover:text-blue-700 block text-center"
-                      >
-                        🧪 صفحة اختبار عملية الدفع (التطوير فقط)
-                      </a>
-                    </div>
-                  )}
+
                 </form>
               )}
             </div>

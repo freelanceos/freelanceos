@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Image from 'next/image'
 import Hero from './home/Hero'
 import Services from './home/Services'
 import DigitalProducts from './home/DigitalProducts'
@@ -13,8 +14,15 @@ export default function HomePage() {
       <nav className="bg-white shadow-sm border-b sticky top-0 z-40">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold text-gray-900">
-              🚀 النجاح الرقمي
+            <div className="h-20">
+              <Image
+                src="/logo.png"
+                alt="FreelanceOS"
+                width={100}
+                height={10}
+                className="h-full w-auto"
+                priority
+              />
             </div>
             <div className="hidden md:flex space-x-8 space-x-reverse">
               <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors">خدماتنا</a>
@@ -35,7 +43,7 @@ export default function HomePage() {
       <DigitalProducts />
       <Testimonials />
       <ContactCTA />
-      
+
       {/* WhatsApp Float Button */}
       <WhatsAppButton />
     </div>

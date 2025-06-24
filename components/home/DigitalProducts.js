@@ -16,34 +16,48 @@ export default function DigitalProducts() {
         <div className="max-w-4xl mx-auto">
           <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-3xl p-8 lg:p-12 border border-purple-100 shadow-xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              
+
               {/* Product Image/Icon */}
               <div className="text-center lg:text-right">
-                <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-purple-500 to-blue-500 rounded-3xl mb-6 shadow-2xl">
-                  <div className="text-5xl">📱</div>
+                <div className="inline-flex items-center justify-center w-58 h-64 rounded-3xl mb-6 shadow-2xl bg-white">
+                  <img src="/book.png" alt="Book" className="w-full h-full object-contain rounded-3xl" />
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-                    <div className="text-2xl mb-2">🎯</div>
-                    <p className="text-sm text-gray-700">استراتيجيات مؤكدة</p>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🎯</span>
+                      <p className="text-sm text-gray-700">استراتيجيات مؤكدة</p>
+                    </div>
                   </div>
+
+
+
                   <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-                    <div className="text-2xl mb-2">💡</div>
-                    <p className="text-sm text-gray-700">أمثلة عملية</p>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">💡</span>
+                      <p className="text-sm text-gray-700">أمثلة عملية</p>
+                    </div>
                   </div>
+
+
                   <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-                    <div className="text-2xl mb-2">📈</div>
-                    <p className="text-sm text-gray-700">نتائج مضمونة</p>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">📈</span>
+                      <p className="text-sm text-gray-700">نتائج مضمونة</p>
+                    </div>
                   </div>
                 </div>
               </div>
+
+
+
 
               {/* Product Content */}
               <div>
                 <div className="inline-flex items-center bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                   🔥 الأكثر مبيعاً
                 </div>
-                
+
                 <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight">
                   رحلة الانتشار
                 </h3>
@@ -56,15 +70,15 @@ export default function DigitalProducts() {
                   <div className="flex items-center">
                     <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center ml-3">
                       <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-700">أكثر من 150 صفحة من المحتوى القيم</span>
+                    <span className="text-gray-700">٢٧ صفحة من المحتوى القيم</span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center ml-3">
                       <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
                     <span className="text-gray-700">استراتيجيات مؤكدة من خبراء المجال</span>
@@ -72,7 +86,7 @@ export default function DigitalProducts() {
                   <div className="flex items-center">
                     <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center ml-3">
                       <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
                     <span className="text-gray-700">أمثلة وحالات دراسة واقعية</span>
@@ -80,7 +94,7 @@ export default function DigitalProducts() {
                   <div className="flex items-center">
                     <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center ml-3">
                       <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
                     <span className="text-gray-700">تحميل فوري بعد الدفع</span>
@@ -98,16 +112,14 @@ export default function DigitalProducts() {
                   </div>
                 </div>
 
-                <a 
-                  href="/book-landing" 
+                <a
+                  href="/book-landing"
                   className="block w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-center font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                   📚 احصل على نسختك الآن
                 </a>
 
-                <p className="text-xs text-gray-500 text-center mt-4">
-                  ضمان استرداد المال خلال 7 أيام
-                </p>
+
               </div>
             </div>
           </div>
@@ -137,6 +149,6 @@ export default function DigitalProducts() {
           </div>
         </div>
       </div>
-    </section>
+    </section >
   )
 }

@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   console.log('Save order request received:', req.body)
 
   try {
-    const { name, email, phone, payment_method, amount_cents } = req.body
+    const { name, email, phone } = req.body
 
     // Basic validation
     if (!name || !email || !phone) {
@@ -23,9 +23,7 @@ export default async function handler(req, res) {
     const order = await createOrder({
       name,
       email,
-      phone,
-      payment_method,
-      amount_cents
+      phone
     })
 
     console.log('Order saved successfully:', order.id)

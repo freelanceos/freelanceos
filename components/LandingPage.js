@@ -30,7 +30,7 @@ export default function LandingPage() {
             دليل شامل يحتوي على استراتيجيات مؤكدة لبناء جمهور كبير وتحقيق الربح من تيك توك
             <br />مع خبرات عملية من خبراء المجال
           </p>
-          
+
           {/* Price Highlight */}
           <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 p-6 rounded-xl mb-8 max-w-md mx-auto shadow-lg">
             <p className="text-2xl lg:text-3xl font-bold text-gray-900">💰 السعر: 200 جنيه مصري فقط</p>
@@ -38,7 +38,7 @@ export default function LandingPage() {
           </div>
 
           <a href="#order" className="btn-primary inline-block text-xl">
-            🛒 احجز نسختك الآن
+            🛒 احصل علي نسختك الآن
           </a>
         </div>
       </section>
@@ -111,16 +111,53 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Order Form Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-50 to-blue-50" id="order">
+      {/* Order Form Section - New Layout */}
+      <section className="py-20 bg-gradient-to-r from-blue-50 to-purple-50" id="order">
         <div className="container mx-auto px-4">
-          <h3 className="text-3xl lg:text-4xl font-bold text-center mb-4 text-gray-900">
-            🛒 احجز نسختك الآن
-          </h3>
-          <p className="text-center text-gray-600 mb-12 text-lg">
-            احصل على الكتاب فوراً بعد الدفع + إيميل يحتوي على رابط التحميل
-          </p>
-          <OrderForm />
+          <div className="text-center mb-12">
+            <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              احصل على نسختك الآن بخطوتين فقط
+            </h3>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              عملية الشراء سريعة وآمنة. اتبع الخطوات أدناه لتحصل على الكتاب فوراً.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Step 1: Payment */}
+            <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-200 h-full">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xl ml-4">1</div>
+                <h4 className="text-2xl font-bold text-gray-900">إتمام عملية الدفع</h4>
+              </div>
+              <p className="text-gray-600 mb-6">
+                اضغط على الزر أدناه لإتمام عملية الدفع الآمنة عبر Paymob. سيتم فتح صفحة الدفع في نافذة جديدة.
+              </p>
+              <a
+                href="https://accept.paymobsolutions.com/standalone?ref=p_LRR2SDNyNGF5enluVDdYVURQdVh5NEdJZz09X1o3d053eGlGMlhCbVBpSytZSVBDS2c9PQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full block text-center btn-primary text-lg mb-4"
+              >
+                💳 ادفع 200 جنيه الآن
+              </a>
+              <p className="text-sm text-gray-500">
+                بعد إتمام الدفع، لا تغلق هذه الصفحة وعد لإكمال الخطوة الثانية.
+              </p>
+            </div>
+
+            {/* Step 2: Confirmation Form */}
+            <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-200 h-full">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-xl ml-4">2</div>
+                <h4 className="text-2xl font-bold text-gray-900">تأكيد طلبك</h4>
+              </div>
+              <p className="text-gray-600 mb-6">
+                بعد الدفع، املأ النموذج أدناه وسنرسل لك الكتاب فوراً على بريدك الإلكتروني.
+              </p>
+              <OrderForm />
+            </div>
+          </div>
         </div>
       </section>
 

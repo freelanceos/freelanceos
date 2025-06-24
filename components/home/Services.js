@@ -2,7 +2,7 @@ const services = [
   {
     icon: '💻',
     title: 'البرمجة',
-    description: 'تطوير مواقع مخصصة، لوحات تحكم، تكامل مع أنظمة دفع، واستخدام أحدث تقنيات الويب (React, Next.js, Supabase).',
+    description: 'تطوير مواقع مخصصة، لوحات تحكم، تكامل مع أنظمة دفع، واستخدام أحدث تقنيات الويب .',
     features: [
       'مواقع ويب احترافية',
       'لوحات تحكم مخصصة',
@@ -74,8 +74,8 @@ export default function Services() {
                 <ul className="space-y-3 mb-8">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="flex items-center text-gray-700">
-                      <div className="w-2 h-2 bg-gradient-to-r rounded-full ml-3 flex-shrink-0" 
-                           style={{backgroundImage: `linear-gradient(to right, ${service.color.split(' ')[1]}, ${service.color.split(' ')[3]})`}}></div>
+                      <div className="w-2 h-2 bg-gradient-to-r rounded-full ml-3 flex-shrink-0"
+                        style={{ backgroundImage: `linear-gradient(to right, ${service.color.split(' ')[1]}, ${service.color.split(' ')[3]})` }}></div>
                       <span>{feature}</span>
                     </li>
                   ))}

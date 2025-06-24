@@ -9,7 +9,7 @@ export default function Download() {
 
   useEffect(() => {
     const { token } = router.query
-    
+
     if (token) {
       // For demo purposes, all tokens are valid
       // In production, you would validate this against your database
@@ -22,7 +22,7 @@ export default function Download() {
     // For demo purposes, we'll just show an alert
     // In production, you would serve the actual PDF file
     alert('في الإنتاج، سيتم تحميل الكتاب هنا. هذا مجرد عرض توضيحي.')
-    
+
     // Example of how you would trigger a download:
     // const link = document.createElement('a')
     // link.href = '/path-to-your-book.pdf'
@@ -61,7 +61,7 @@ export default function Download() {
                 <p className="text-gray-600 mb-6">
                   يمكنك الآن تحميل كتاب "رحلة الانتشار - دليل النجاح على تيك توك"
                 </p>
-                
+
                 <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg mb-6">
                   <h3 className="font-bold text-gray-900 mb-2">محتويات الكتاب:</h3>
                   <ul className="text-sm text-gray-600 space-y-1">
@@ -80,10 +80,10 @@ export default function Download() {
                 >
                   📥 تحميل الكتاب (PDF)
                 </button>
-                
+
                 <div className="text-xs text-gray-500 mb-6">
                   <p>الملف بصيغة PDF • حجم الملف: 15 MB</p>
-                  <p>أكثر من 150 صفحة من المحتوى القيم</p>
+                  <p>٢٧ صفحة من المحتوى القيم</p>
                 </div>
 
                 <div className="border-t pt-4">

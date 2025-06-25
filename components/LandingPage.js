@@ -21,25 +21,73 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-12 lg:py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            🚀 اكتشف أسرار النجاح<br />على تيك توك
-          </h2>
-          <p className="text-lg lg:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            دليل شامل يحتوي على استراتيجيات مؤكدة لبناء جمهور كبير وتحقيق الربح من تيك توك
-            <br />مع خبرات عملية من خبراء المجال
-          </p>
+      <section className="py-12 lg:py-20 bg-gradient-to-br from-purple-100 via-blue-50 to-teal-100">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div className="text-center lg:text-right">
+              <div className="inline-block bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4 animate-pulse">
+                🔥 عرض محدود - 60% خصم
+              </div>
+              <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                🚀 اكتشف أسرار النجاح<br />على تيك توك
+              </h2>
+              <p className="text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed">
+                دليل شامل يحتوي على استراتيجيات مؤكدة لبناء جمهور كبير وتحقيق الربح من تيك توك
+                <br />مع خبرات عملية من خبراء المجال
+              </p>
 
-          {/* Price Highlight */}
-          <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 p-6 rounded-xl mb-8 max-w-md mx-auto shadow-lg">
-            <p className="text-2xl lg:text-3xl font-bold text-gray-900">💰 السعر: 200 جنيه مصري فقط</p>
-            <p className="text-sm text-gray-700 mt-2">بدلاً من 500 جنيه - عرض محدود!</p>
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-4 mb-8">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-600">+50</div>
+                  <div className="text-sm text-gray-600">استراتيجية</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-600">+100</div>
+                  <div className="text-sm text-gray-600">صفحة</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-purple-600">+1000</div>
+                  <div className="text-sm text-gray-600">عميل راضي</div>
+                </div>
+              </div>
+
+              {/* Price Highlight */}
+              <div className="bg-gradient-to-r from-yellow-400 to-orange-500 p-6 rounded-2xl mb-8 max-w-md mx-auto lg:mx-0 shadow-2xl transform hover:scale-105 transition-transform">
+                <div className="text-center">
+                  <div className="text-sm text-gray-800 mb-2">السعر بعد الخصم</div>
+                  <div className="flex items-center justify-center space-x-2 space-x-reverse mb-2">
+                    <span className="text-lg text-gray-600 line-through">500 جنيه</span>
+                    <span className="text-3xl font-bold text-gray-900">200 جنيه</span>
+                  </div>
+                  <div className="text-sm text-red-700 font-bold">💰 وفر 300 جنيه الآن!</div>
+                </div>
+              </div>
+
+              <a href="#order" className="btn-primary inline-block text-xl px-8 py-4 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all">
+                🛒 احصل علي نسختك الآن
+              </a>
+            </div>
+
+            {/* Book Visual */}
+            <div className="text-center lg:text-left">
+              <div className="relative inline-block">
+                <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-8 rounded-3xl shadow-2xl transform hover:rotate-2 transition-transform">
+                  <div className="text-6xl mb-4">📚</div>
+                  <h3 className="text-xl font-bold text-white mb-2">كتاب رحلة الانتشار</h3>
+                  <p className="text-blue-100 text-sm">دليل النجاح على تيك توك</p>
+                </div>
+                {/* Floating Elements */}
+                <div className="absolute -top-4 -right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold animate-bounce">
+                  جديد!
+                </div>
+                <div className="absolute -bottom-4 -left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                  ⭐ تقييم 5/5
+                </div>
+              </div>
+            </div>
           </div>
-
-          <a href="#order" className="btn-primary inline-block text-xl">
-            🛒 احصل علي نسختك الآن
-          </a>
         </div>
       </section>
 

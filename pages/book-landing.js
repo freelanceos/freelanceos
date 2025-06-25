@@ -31,7 +31,7 @@ export default function BookLanding() {
                 <meta property="og:type" content="product" />
                 <meta property="og:locale" content="ar_EG" />
                 <meta name="robots" content="index, follow" />
-                <meta name="author" content=" FreelanceOS" />
+                <meta name="author" content="FreelanceOS" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <LandingPage />

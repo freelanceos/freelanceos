@@ -114,14 +114,15 @@ export default function AdminDashboard() {
                     email: order.email,
                     name: order.name,
                     phone: order.phone,
-                    order_id: order.id
+                    order_id: order.id,
+                    fromAdmin: true
                 })
             })
 
             const data = await response.json()
             
             if (response.ok) {
-                alert('تم إرسال الإيميل بنجاح للعميل')
+                alert('🎉 تم إرسال الإيميل المخصص بنجاح للعميل من إدارة FreelanceOS')
             } else {
                 setError('حدث خطأ في إرسال الإيميل')
             }

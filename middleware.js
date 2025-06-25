@@ -1,18 +1,18 @@
+
 import { NextResponse } from 'next/server'
 
 export async function middleware(request) {
-    // Get the pathname of the request (e.g. /admin, /admin/login)
     const { pathname } = request.nextUrl
 
-    // Get admin session from cookies
-    const adminSession = request.cookies.get('admin_session')?.value
+    // Get admin session from cookies - using the correct cookie name
+    const adminToken = request.cookies.get('admin_token')?.value
 
     // Check if the request is for the admin section
     if (pathname.startsWith('/admin')) {
         // Allow access to login page if not authenticated
         if (pathname === '/admin/login') {
             // If user is already logged in, redirect to admin dashboard
-            if (adminSession) {
+            if (adminToken) {
                 return NextResponse.redirect(new URL('/admin', request.url))
             }
             // Otherwise, allow access to login page
@@ -20,7 +20,7 @@ export async function middleware(request) {
         }
 
         // Check authentication for other admin routes
-        if (!adminSession) {
+        if (!adminToken) {
             // Redirect to login if not authenticated
             return NextResponse.redirect(new URL('/admin/login', request.url))
         }

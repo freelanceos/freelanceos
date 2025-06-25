@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
@@ -30,12 +31,17 @@ export default function LoginForm() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData),
+                credentials: 'include' // Important for cookies
             })
 
             const data = await response.json()
+            console.log('Login response:', data) // Debug log
 
-            if (data.success) {
-                router.push('/admin')
+            if (response.ok && data.success) {
+                // Force a small delay to ensure cookie is set
+                setTimeout(() => {
+                    router.push('/admin')
+                }, 100)
             } else {
                 setError(data.message || 'حدث خطأ في تسجيل الدخول')
             }
@@ -58,6 +64,7 @@ export default function LoginForm() {
                         أدخل بيانات الدخول للوصول إلى لوحة التحكم
                     </p>
                 </div>
+                
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
@@ -112,6 +119,10 @@ export default function LoginForm() {
                         >
                             {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
                         </button>
+                    </div>
+
+                    <div className="text-center text-sm text-gray-600">
+                        للاختبار: admin@freelanceos.online / admin123
                     </div>
                 </form>
             </div>

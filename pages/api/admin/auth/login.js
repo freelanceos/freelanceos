@@ -1,6 +1,9 @@
 import { serialize } from 'cookie'
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken' // Added jwt import
 import { supabase } from '../../../../lib/supabase'
+
+const JWT_SECRET = process.env.JWT_SECRET || 'your-fallback-secret-key-for-dev'; // Added JWT_SECRET
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -24,7 +27,17 @@ export default async function handler(req, res) {
                 email: "admin@freelanceos.online",
                 role: "admin",
             }
-            res.setHeader('Set-Cookie', serialize('admin_token', JSON.stringify(adminUser), {
+            // Generate JWT token for emergency login
+            const emergencyToken = jwt.sign(
+                {
+                    id: adminUser.id,
+                    email: adminUser.email,
+                    role: adminUser.role
+                },
+                JWT_SECRET,
+                { expiresIn: '1d' }
+            )
+            res.setHeader('Set-Cookie', serialize('admin_session', emergencyToken, { // Store JWT
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: 'strict',
@@ -96,17 +109,33 @@ export default async function handler(req, res) {
             email: admin.email,
             role: admin.role
         }
-        res.setHeader('Set-Cookie', serialize('admin_token', JSON.stringify(adminUser), {
+
+        // Generate JWT token
+        const token = jwt.sign(
+            {
+                id: adminUser.id,
+                email: adminUser.email,
+                role: adminUser.role
+            },
+            JWT_SECRET,
+            { expiresIn: '1d' }
+        )
+
+        res.setHeader('Set-Cookie', serialize('admin_session', token, { // Store JWT
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
-            maxAge: 24 * 60 * 60,
+            maxAge: 24 * 60 * 60, // 1 day
             path: '/'
         }))
         return res.status(200).json({
             success: true,
             message: "تم تسجيل الدخول بنجاح",
-            admin: adminUser
+            admin: { // Return admin user details, but not the token itself in the body
+                id: adminUser.id,
+                email: adminUser.email,
+                role: adminUser.role
+            }
         })
     } catch (error) {
         console.error('Admin login error:', error)

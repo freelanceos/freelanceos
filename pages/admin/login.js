@@ -25,7 +25,7 @@ export default function AdminLogin() {
                 return
             }
             // نجاح الدخول
-            router.push('/admin/dashboard')
+            router.push('/admin') // Changed from /admin/dashboard
         } catch (err) {
             setError('حدث خطأ غير متوقع')
             setLoading(false)

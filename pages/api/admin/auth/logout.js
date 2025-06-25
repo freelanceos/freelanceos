@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
     try {
         // Clear the admin token cookie
-        res.setHeader('Set-Cookie', serialize('admin_token', '', {
+        res.setHeader('Set-Cookie', serialize('admin_session', '', { // Changed from admin_token
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',

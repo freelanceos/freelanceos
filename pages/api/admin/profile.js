@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
     try {
         // Get token from cookies or Authorization header
-        const token = req.cookies.admin_token ||
+        const token = req.cookies.admin_session || // Changed from admin_token
             (req.headers.authorization && req.headers.authorization.split(' ')[1])
 
         if (!token) {

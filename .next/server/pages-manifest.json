@@ -2,11 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/admin": "pages/admin.js",
-  "/book-landing": "pages/book-landing.js",
   "/home": "pages/home.js",
+  "/book-landing": "pages/book-landing.js",
+  "/admin": "pages/admin.js",
   "/api/save-order": "pages/api/save-order.js",
-  "/api/send-email": "pages/api/send-email.js",
-  "/api/admin/profile": "pages/api/admin/profile.js",
-  "/api/admin/orders": "pages/api/admin/orders.js"
+  "/api/send-email": "pages/api/send-email.js"
 }

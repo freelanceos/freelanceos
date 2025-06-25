@@ -26,9 +26,9 @@ export default async function handler(req, res) {
     const downloadLink = `${process.env.NEXT_PUBLIC_SITE_URL}/download?token=${order_id}`;
 
     // Email content based on source
-    const customerEmailContent = fromAdmin ? 
-      // Content when sent from admin panel
-      `
+    const customerEmailContent = fromAdmin
+      ? // Content when sent from admin panel
+        `
         <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px;">
           <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
             <h1 style="color: #2563eb; text-align: center; font-size: 28px; margin-bottom: 20px;">🎉 مبروك ${name}! 🎉</h1>
@@ -51,26 +51,21 @@ export default async function handler(req, res) {
               نتمنى لك قراءة ممتعة ونجاحاً باهراً على تيك توك! 🚀<br>
               فريق FreelanceOS
             </p>
+            <p style="color: #856404; margin: 0; font-size: 14px;">
+              💡 نصيحة: احفظ هذا الرابط في مكان آمن للرجوع إليه لاحقاً
+            </p>
           </div>
         </div>
-      ` :
-      // Content for automatic emails
       `
+      : // Content for automatic emails
+        `
         <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8f9fa; padding: 20px; border-radius: 10px;">
           <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
             <h1 style="color: #2563eb; text-align: center; font-size: 24px;">شكراً لك ${name}!</h1>
             <p style="color: #333; font-size: 16px; line-height: 1.6;">
-              تم تأكيد طلبك بنجاح. يمكنك تحميل كتاب "رحلة الانتشار - دليل النجاح على تيك توك" من الرابط أدناه:
-            </p>
-            <div style="text-align: center; margin: 30px 0;">
-              <a href="${downloadLink}" style="background: #2563eb; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
-                تحميل الكتاب
-              </a>
-            </div>
+              تم استلام بيانات طلبك بنجاح.  كتاب "رحلة الانتشار - دليل النجاح على تيك توك" سوف يتم الرد وارسال الكتاب سريعا 
             <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 5px; margin: 20px 0;">
-              <p style="color: #856404; margin: 0; font-size: 14px;">
-                💡 نصيحة: احفظ هذا الرابط في مكان آمن للرجوع إليه لاحقاً
-              </p>
+              
             </div>
             <p style="color: #666; font-size: 14px; text-align: center;">
               فريق FreelanceOS
@@ -83,7 +78,9 @@ export default async function handler(req, res) {
     await resend.emails.send({
       from: "FreelanceOS <admin@freelanceos.online>",
       to: email,
-      subject: fromAdmin ? "🎉 تم تأكيد طلبك من إدارة FreelanceOS - كتاب رحلة الانتشار" : "تم تأكيد طلبك - كتاب رحلة الانتشار",
+      subject: fromAdmin
+        ? "🎉 تم تأكيد طلبك من إدارة FreelanceOS - كتاب رحلة الانتشار"
+        : "تم استلام بيانات طلبك - كتاب رحلة الانتشار",
       html: customerEmailContent,
     });
 
@@ -103,7 +100,7 @@ export default async function handler(req, res) {
                 <p style="margin: 10px 0;"><strong>📧 الإيميل:</strong> ${email}</p>
                 <p style="margin: 10px 0;"><strong>📱 رقم الهاتف:</strong> ${phone}</p>
                 <p style="margin: 10px 0;"><strong>🆔 رقم الطلب:</strong> ${order_id}</p>
-                <p style="margin: 10px 0;"><strong>⏰ التوقيت:</strong> ${new Date().toLocaleDateString('ar-EG')} - ${new Date().toLocaleTimeString('ar-EG')}</p>
+                <p style="margin: 10px 0;"><strong>⏰ التوقيت:</strong> ${new Date().toLocaleDateString("ar-EG")} - ${new Date().toLocaleTimeString("ar-EG")}</p>
               </div>
               <div style="background: #d4edda; border: 1px solid #c3e6cb; padding: 15px; border-radius: 5px; margin: 20px 0;">
                 <p style="color: #155724; margin: 0;">

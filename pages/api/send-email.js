@@ -113,7 +113,48 @@ export default async function handler(req, res) {
       });
     }
 
-    res.status(200).json({ message: "Emails sent successfully" });
+    // Send WhatsApp automatically for new orders (not from admin)
+    if (!fromAdmin) {
+      try {
+        const downloadLink = `${process.env.NEXT_PUBLIC_SITE_URL}/download?token=${order_id}`;
+        const whatsappMessage = `مرحباً ${name}،
+
+تم تأكيد طلبك لكتاب "رحلة الانتشار - دليل النجاح على تيك توك"
+
+يمكنك تحميل الكتاب من الرابط التالي:
+${downloadLink}
+
+رقم الطلب: ${order_id.substring(0, 8)}
+
+نتمنى لك قراءة ممتعة ونجاحاً باهراً على تيك توك!
+
+فريق FreelanceOS`;
+
+        const phoneNumber = phone.replace(/[^0-9]/g, '');
+        const whatsappNumber = phoneNumber.startsWith('01') ? `2${phoneNumber}` : phoneNumber;
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        
+        console.log('WhatsApp message prepared for automatic sending:', {
+          customer: name,
+          phone: whatsappNumber,
+          orderId: order_id.substring(0, 8)
+        });
+        
+        // Note: In a real scenario, you would integrate with WhatsApp Business API
+        // For now, we'll log the URL that would be used
+        console.log('WhatsApp URL generated:', whatsappUrl);
+        
+      } catch (whatsappError) {
+        console.error('WhatsApp preparation error:', whatsappError);
+        // Don't fail the entire process if WhatsApp preparation fails
+      }
+    }
+
+    res.status(200).json({ 
+      message: "Emails sent successfully",
+      whatsapp: !fromAdmin ? "WhatsApp message prepared" : "WhatsApp skipped (admin send)"
+    });
   } catch (error) {
     console.error("Email sending error:", error);
     res.status(500).json({ message: "Failed to send emails" });

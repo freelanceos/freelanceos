@@ -2,10 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/home": "pages/home.js",
-  "/admin/login": "pages/admin/login.js",
-  "/api/admin/auth/login": "pages/api/admin/auth/login.js",
   "/admin": "pages/admin.js",
-  "/api/admin/profile": "pages/api/admin/profile.js"
+  "/home": "pages/home.js",
+  "/api/admin/orders": "pages/api/admin/orders.js",
+  "/api/admin/profile": "pages/api/admin/profile.js",
+  "/api/admin/orders/update": "pages/api/admin/orders/update.js"
 }

@@ -32,6 +32,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/admin.js"
     ],
+    "/book-landing": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/book-landing.js"
+    ],
     "/home": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

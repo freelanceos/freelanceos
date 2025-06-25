@@ -1,113 +1,116 @@
-
-import { useState } from 'react'
+import { useState } from "react";
 
 export default function OrderForm() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: ''
-  })
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState('')
-  const [errors, setErrors] = useState({})
+    name: "",
+    email: "",
+    phone: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
 
   const validateForm = () => {
-    const newErrors = {}
+    const newErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'الاسم مطلوب'
+      newErrors.name = "الاسم مطلوب";
     } else if (formData.name.trim().length < 2) {
-      newErrors.name = 'الاسم يجب أن يكون أكثر من حرفين'
+      newErrors.name = "الاسم يجب أن يكون أكثر من حرفين";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'البريد الإلكتروني مطلوب'
+      newErrors.email = "البريد الإلكتروني مطلوب";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'يرجى إدخال بريد إلكتروني صحيح'
+      newErrors.email = "يرجى إدخال بريد إلكتروني صحيح";
     }
 
     if (!formData.phone.trim()) {
-      newErrors.phone = 'رقم الهاتف مطلوب'
-    } else if (!/^01[0-2,5]{1}[0-9]{8}$/.test(formData.phone.replace(/[\s-]/g, ''))) {
-      newErrors.phone = 'يرجى إدخال رقم هاتف مصري صحيح'
+      newErrors.phone = "رقم الهاتف مطلوب";
+    } else if (
+      !/^01[0-2,5]{1}[0-9]{8}$/.test(formData.phone.replace(/[\s-]/g, ""))
+    ) {
+      newErrors.phone = "يرجى إدخال رقم هاتف مصري صحيح";
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     if (!validateForm()) {
-      return
+      return;
     }
 
-    setLoading(true)
-    setError('')
+    setLoading(true);
+    setError("");
 
     try {
-      const response = await fetch('/api/save-order', {
-        method: 'POST',
+      const response = await fetch("/api/save-order", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (response.ok) {
-        setSuccess(true)
-        setFormData({ name: '', email: '', phone: '' })
-        
+        setSuccess(true);
+        setFormData({ name: "", email: "", phone: "" });
+
         // Send email notification
         try {
-          await fetch('/api/send-email', {
-            method: 'POST',
+          await fetch("/api/send-email", {
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
               ...formData,
-              orderId: data.order_id
+              orderId: data.order_id,
             }),
-          })
+          });
         } catch (emailError) {
-          console.error('Email sending failed:', emailError)
+          console.error("Email sending failed:", emailError);
         }
       } else {
-        setError(data.message || 'حدث خطأ في إرسال الطلب')
+        setError(data.message || "حدث خطأ في إرسال الطلب");
       }
     } catch (err) {
-      setError('حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى.')
+      setError("حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
-    }))
-    
+      [name]: value,
+    }));
+
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
-      }))
+        [name]: "",
+      }));
     }
-  }
+  };
 
   if (success) {
     return (
       <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-8 text-center">
         <div className="text-6xl mb-4">🎉</div>
-        <h3 className="text-2xl font-bold text-green-800 mb-4">تم تأكيد طلبك بنجاح!</h3>
+        <h3 className="text-2xl font-bold text-green-800 mb-4">
+          تم تأكيد طلبك بنجاح!
+        </h3>
         <p className="text-green-700 mb-6">
           سنرسل لك رابط تحميل الكتاب على البريد الإلكتروني خلال 5 دقائق.
           <br />
@@ -119,16 +122,20 @@ export default function OrderForm() {
           </p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-center">
-        <h3 className="text-xl font-bold text-white mb-2">املأ بياناتك للحصول على الكتاب</h3>
-        <p className="text-blue-100 text-sm">سيتم إرسال رابط التحميل على بريدك الإلكتروني فوراً</p>
+        <h3 className="text-xl font-bold text-white mb-2">
+          املأ بياناتك للحصول على الكتاب نفس بيانات الدفع
+        </h3>
+        <p className="text-blue-100 text-sm">
+          سيتم إرسال رابط التحميل على بريدك الإلكتروني فوراً
+        </p>
       </div>
-      
+
       <div className="p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name Field */}
@@ -141,11 +148,13 @@ export default function OrderForm() {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              className={`form-input w-full ${errors.name ? 'border-red-500 focus:border-red-500' : ''}`}
+              className={`form-input w-full ${errors.name ? "border-red-500 focus:border-red-500" : ""}`}
               placeholder="مثال: أحمد محمود"
               disabled={loading}
             />
-            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+            )}
           </div>
 
           {/* Email Field */}
@@ -158,11 +167,13 @@ export default function OrderForm() {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              className={`form-input w-full ${errors.email ? 'border-red-500 focus:border-red-500' : ''}`}
+              className={`form-input w-full ${errors.email ? "border-red-500 focus:border-red-500" : ""}`}
               placeholder="مثال: ahmed@gmail.com"
               disabled={loading}
             />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+            )}
           </div>
 
           {/* Phone Field */}
@@ -175,11 +186,13 @@ export default function OrderForm() {
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              className={`form-input w-full ${errors.phone ? 'border-red-500 focus:border-red-500' : ''}`}
+              className={`form-input w-full ${errors.phone ? "border-red-500 focus:border-red-500" : ""}`}
               placeholder="مثال: 01012345678"
               disabled={loading}
             />
-            {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+            {errors.phone && (
+              <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+            )}
           </div>
 
           {/* Error Message */}
@@ -195,8 +208,8 @@ export default function OrderForm() {
             disabled={loading}
             className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all ${
               loading
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105"
             }`}
           >
             {loading ? (
@@ -205,7 +218,7 @@ export default function OrderForm() {
                 <span>جاري الإرسال...</span>
               </div>
             ) : (
-              '📨 أرسل طلبي واحصل على الكتاب'
+              "📨     شكرا لك سوف يتم ارسال رابط التحميل  "
             )}
           </button>
         </form>
@@ -229,5 +242,5 @@ export default function OrderForm() {
         </div>
       </div>
     </div>
-  )
+  );
 }

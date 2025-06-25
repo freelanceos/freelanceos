@@ -340,7 +340,7 @@ ${downloadLink}
                             <div className="flex items-center justify-between">
                                 <h3 className="text-lg font-semibold text-gray-900 flex items-center">
                                     <span className="ml-2">🛒</span>
-                                    الطلبات (3)
+                                    الطلبات ({stats.totalOrders})
                                 </h3>
                                 <button className="text-sm text-blue-600 hover:text-blue-700">
                                     تصدير CSV

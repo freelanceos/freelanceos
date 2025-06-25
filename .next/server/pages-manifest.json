@@ -2,9 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/home": "pages/home.js",
   "/book-landing": "pages/book-landing.js",
-  "/admin": "pages/admin.js",
-  "/api/save-order": "pages/api/save-order.js",
-  "/api/send-email": "pages/api/send-email.js"
+  "/home": "pages/home.js",
+  "/download": "pages/download.js",
+  "/": "pages/index.js"
 }

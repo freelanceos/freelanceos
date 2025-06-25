@@ -45,22 +45,17 @@ export default function AdminDashboard() {
 
     const fetchData = async () => {
         try {
-            // Fetch orders (simulate API call for now)
-            setOrders([
-                {
-                    id: 'ORD001',
-                    name: 'yasser',
-                    email: 'yasserarafa35@gmail.com',
-                    phone: '01010101010101',
-                    payment_method: 'wallet',
-                    transfer_number: '01010101010101',
-                    status: 'confirmed',
-                    created_at: new Date().toISOString(),
-                    order_number: '14'
-                }
-            ])
+            // Fetch orders from Supabase
+            const ordersResponse = await fetch('/api/admin/orders')
+            const ordersData = await ordersResponse.json()
+            
+            if (ordersData.success) {
+                setOrders(ordersData.orders)
+            } else {
+                setError('حدث خطأ في تحميل الطلبات')
+            }
 
-            // Fetch contacts
+            // Fetch contacts (will be implemented later)
             setContacts([])
         } catch (error) {
             setError('حدث خطأ في تحميل البيانات')
@@ -81,10 +76,27 @@ export default function AdminDashboard() {
 
     const updateOrderStatus = async (orderId, newStatus) => {
         try {
-            // Update order status logic here
-            setOrders(orders.map(order => 
-                order.id === orderId ? { ...order, status: newStatus } : order
-            ))
+            const response = await fetch('/api/admin/orders/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    orderId,
+                    status: newStatus
+                })
+            })
+
+            const data = await response.json()
+            
+            if (data.success) {
+                // Update local state
+                setOrders(orders.map(order => 
+                    order.id === orderId ? { ...order, payment: newStatus } : order
+                ))
+            } else {
+                setError('حدث خطأ في تحديث حالة الطلب')
+            }
         } catch (error) {
             setError('حدث خطأ في تحديث حالة الطلب')
         }
@@ -92,10 +104,9 @@ export default function AdminDashboard() {
 
     const getStatusColor = (status) => {
         switch (status) {
-            case 'pending': return 'bg-yellow-100 text-yellow-800'
-            case 'confirmed': return 'bg-green-100 text-green-800'
-            case 'completed': return 'bg-blue-100 text-blue-800'
-            case 'canceled': return 'bg-red-100 text-red-800'
+            case 'waiting': return 'bg-yellow-100 text-yellow-800'
+            case 'completed': return 'bg-green-100 text-green-800'
+            case 'failed': return 'bg-red-100 text-red-800'
             default: return 'bg-gray-100 text-gray-800'
         }
     }
@@ -114,15 +125,15 @@ export default function AdminDashboard() {
         const matchesSearch = order.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                             order.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
                             order.phone.includes(searchTerm)
-        const matchesStatus = statusFilter === 'all' || order.status === statusFilter
+        const matchesStatus = statusFilter === 'all' || order.payment === statusFilter
         return matchesSearch && matchesStatus
     })
 
     const stats = {
         totalOrders: orders.length,
-        pendingOrders: orders.filter(o => o.status === 'pending').length,
-        confirmedOrders: orders.filter(o => o.status === 'confirmed').length,
-        completedOrders: orders.filter(o => o.status === 'completed').length,
+        waitingOrders: orders.filter(o => o.payment === 'waiting').length,
+        completedOrders: orders.filter(o => o.payment === 'completed').length,
+        failedOrders: orders.filter(o => o.payment === 'failed').length,
         newMessages: contacts.length
     }
 
@@ -246,8 +257,8 @@ export default function AdminDashboard() {
                     <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-gray-600 mb-1">طلبات معلقة</p>
-                                <p className="text-2xl font-bold text-gray-900">0</p>
+                                <p className="text-sm text-gray-600 mb-1">طلبات في الانتظار</p>
+                                <p className="text-2xl font-bold text-gray-900">{stats.waitingOrders}</p>
                             </div>
                             <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
                                 <span className="text-2xl">⏰</span>
@@ -259,7 +270,7 @@ export default function AdminDashboard() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600 mb-1">إجمالي الطلبات</p>
-                                <p className="text-2xl font-bold text-gray-900">3</p>
+                                <p className="text-2xl font-bold text-gray-900">{stats.totalOrders}</p>
                             </div>
                             <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                                 <span className="text-2xl">🛒</span>
@@ -300,10 +311,9 @@ export default function AdminDashboard() {
                                         className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
                                         <option value="all">جميع الحالات</option>
-                                        <option value="pending">في الانتظار</option>
-                                        <option value="confirmed">مؤكد</option>
+                                        <option value="waiting">في الانتظار</option>
                                         <option value="completed">مكتمل</option>
-                                        <option value="canceled">ملغي</option>
+                                        <option value="failed">فشل</option>
                                     </select>
                                 </div>
                                 <div className="flex space-x-2 space-x-reverse">
@@ -327,7 +337,7 @@ export default function AdminDashboard() {
 
                             {/* Orders List */}
                             <div className="space-y-4">
-                                {orders.map((order) => (
+                                {filteredOrders.length > 0 ? filteredOrders.map((order) => (
                                     <div key={order.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
                                         <div className="flex items-center justify-between mb-3">
                                             <div className="flex items-center space-x-3 space-x-reverse">
@@ -340,34 +350,30 @@ export default function AdminDashboard() {
                                                 </div>
                                             </div>
                                             <div className="flex items-center space-x-2 space-x-reverse">
-                                                <span className="text-sm text-gray-500">عرض الإيصال</span>
-                                                <button className="text-blue-600 hover:text-blue-700">
-                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                                    </svg>
-                                                </button>
                                                 <select 
-                                                    value={order.status}
+                                                    value={order.payment}
                                                     onChange={(e) => updateOrderStatus(order.id, e.target.value)}
-                                                    className={`px-3 py-1 rounded-full text-sm border-0 ${getStatusColor(order.status)}`}
+                                                    className={`px-3 py-1 rounded-full text-sm border-0 ${getStatusColor(order.payment)}`}
                                                 >
-                                                    <option value="confirmed">confirmed</option>
-                                                    <option value="pending">pending</option>
+                                                    <option value="waiting">waiting</option>
                                                     <option value="completed">completed</option>
-                                                    <option value="canceled">canceled</option>
+                                                    <option value="failed">failed</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div className="text-sm text-gray-600 space-y-1">
                                             <p>📧 {order.email}</p>
                                             <p>📱 {order.phone}</p>
-                                            <p>💳 {order.payment_method}</p>
-                                            <p>📅 {new Date(order.created_at).toLocaleDateString('ar-EG')}</p>
-                                            <p><strong>رقم التحويل:</strong> {order.transfer_number}</p>
-                                            <p><strong>رقم الطلب:</strong> 5</p>
+                                            <p>💳 {order.payment}</p>
+                                            <p>📅 {new Date(order.timestamp).toLocaleDateString('ar-EG')}</p>
+                                            <p><strong>معرف الطلب:</strong> {order.id.substring(0, 8)}...</p>
                                         </div>
                                     </div>
-                                ))}
+                                )) : (
+                                    <div className="text-center py-8 text-gray-500">
+                                        <p>لا توجد طلبات</p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

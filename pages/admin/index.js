@@ -102,6 +102,59 @@ export default function AdminDashboard() {
         }
     }
 
+    const sendEmailToCustomer = async (order) => {
+        try {
+            setLoading(true)
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: order.email,
+                    name: order.name,
+                    phone: order.phone,
+                    order_id: order.id
+                })
+            })
+
+            const data = await response.json()
+            
+            if (response.ok) {
+                alert('تم إرسال الإيميل بنجاح للعميل')
+            } else {
+                setError('حدث خطأ في إرسال الإيميل')
+            }
+        } catch (error) {
+            setError('حدث خطأ في إرسال الإيميل')
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const sendWhatsAppToCustomer = (order) => {
+        const downloadLink = `${window.location.origin}/download?token=${order.id}`
+        const message = `مرحباً ${order.name}،
+
+تم تأكيد طلبك لكتاب "رحلة الانتشار - دليل النجاح على تيك توك"
+
+يمكنك تحميل الكتاب من الرابط التالي:
+${downloadLink}
+
+رقم الطلب: ${order.id.substring(0, 8)}
+
+نتمنى لك قراءة ممتعة ونجاحاً باهراً على تيك توك!
+
+فريق FreelanceOS`
+
+        const phoneNumber = order.phone.replace(/[^0-9]/g, '')
+        const whatsappNumber = phoneNumber.startsWith('01') ? `2${phoneNumber}` : phoneNumber
+        const encodedMessage = encodeURIComponent(message)
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`
+        
+        window.open(whatsappUrl, '_blank')
+    }
+
     const getStatusColor = (status) => {
         switch (status) {
             case 'waiting': return 'bg-yellow-100 text-yellow-800'
@@ -246,7 +299,7 @@ export default function AdminDashboard() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600 mb-1">طلبات مكتملة</p>
-                                <p className="text-2xl font-bold text-gray-900">2</p>
+                                <p className="text-2xl font-bold text-gray-900">{stats.completedOrders}</p>
                             </div>
                             <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                                 <span className="text-2xl">✅</span>
@@ -359,6 +412,26 @@ export default function AdminDashboard() {
                                                     <option value="completed">completed</option>
                                                     <option value="failed">failed</option>
                                                 </select>
+                                                
+                                                {/* Send buttons for waiting and completed orders */}
+                                                {(order.payment === 'waiting' || order.payment === 'completed') && (
+                                                    <div className="flex space-x-1 space-x-reverse">
+                                                        <button
+                                                            onClick={() => sendEmailToCustomer(order)}
+                                                            className="px-2 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600 flex items-center"
+                                                            title="إرسال عبر الإيميل"
+                                                        >
+                                                            📧
+                                                        </button>
+                                                        <button
+                                                            onClick={() => sendWhatsAppToCustomer(order)}
+                                                            className="px-2 py-1 bg-green-500 text-white rounded text-xs hover:bg-green-600 flex items-center"
+                                                            title="إرسال عبر واتساب"
+                                                        >
+                                                            💬
+                                                        </button>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                         <div className="text-sm text-gray-600 space-y-1">

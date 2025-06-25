@@ -1,5 +1,4 @@
 import { supabaseAdmin, isSupabaseConfigured } from '../../lib/supabase'
-import { validateHMAC } from '../../lib/paymob'
 
 async function findAndUpdateOrder(transactionData) {
   if (!isSupabaseConfigured || !supabaseAdmin) {

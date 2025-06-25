@@ -1,4 +1,5 @@
-import { verifyAdminToken } from '../../../lib/adminAuth'
+
+import { parse } from 'cookie'
 
 export default async function handler(req, res) {
     if (req.method !== 'GET') {
@@ -6,34 +7,43 @@ export default async function handler(req, res) {
     }
 
     try {
-        // Get token from cookies or Authorization header
-        const token = req.cookies.admin_token ||
-            (req.headers.authorization && req.headers.authorization.split(' ')[1])
+        // Get admin token from cookies
+        const cookies = parse(req.headers.cookie || '')
+        const adminToken = cookies.admin_token
 
-        if (!token) {
+        if (!adminToken) {
             return res.status(401).json({
-                message: 'No token provided',
-                success: false
+                success: false,
+                message: 'غير مصرح للدخول'
             })
         }
 
-        const admin = await verifyAdminToken(token)
+        // Parse admin data from cookie
+        let adminData
+        try {
+            adminData = JSON.parse(adminToken)
+        } catch (e) {
+            return res.status(401).json({
+                success: false,
+                message: 'بيانات الجلسة غير صالحة'
+            })
+        }
 
-        res.status(200).json({
+        // Return admin profile
+        return res.status(200).json({
             success: true,
             admin: {
-                id: admin.id,
-                email: admin.email,
-                role: admin.role,
-                created_at: admin.created_at
+                id: adminData.id,
+                email: adminData.email,
+                role: adminData.role
             }
         })
 
     } catch (error) {
-        console.error('Admin profile error:', error)
-        res.status(401).json({
-            message: 'Invalid or expired token',
-            success: false
+        console.error('Profile check error:', error)
+        res.status(500).json({
+            success: false,
+            message: 'حدث خطأ في التحقق من الهوية'
         })
     }
 }

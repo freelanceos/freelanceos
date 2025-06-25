@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 export default function AdminDashboard() {
-    const [admin, setAdmin] = useState(null)
-    const [loading, setLoading] = useState(true)
     const [stats, setStats] = useState({
         totalOrders: 0,
         completedOrders: 0,
         pendingOrders: 0,
         failedOrders: 0
     })
+    const [admin, setAdmin] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [authLoading, setAuthLoading] = useState(true)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
     const router = useRouter()
 
     useEffect(() => {
@@ -23,6 +25,7 @@ export default function AdminDashboard() {
 
             if (data.success) {
                 setAdmin(data.admin)
+                setIsAuthenticated(true)
                 // You can load additional dashboard data here
             } else {
                 router.push('/admin/login')
@@ -30,6 +33,7 @@ export default function AdminDashboard() {
         } catch (error) {
             router.push('/admin/login')
         } finally {
+            setAuthLoading(false)
             setLoading(false)
         }
     }
@@ -42,6 +46,21 @@ export default function AdminDashboard() {
             console.error('Logout error:', error)
             router.push('/admin/login')
         }
+    }
+
+    if (authLoading) {
+        return (
+            <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-600">Loading...</p>
+                </div>
+            </div>
+        )
+    }
+
+    if (!isAuthenticated) {
+        return null // Will redirect to login
     }
 
     if (loading) {

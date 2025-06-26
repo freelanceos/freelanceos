@@ -30,9 +30,8 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white font-arabic" dir="rtl">
       {/* Enhanced Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white shadow-sm'
-      }`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white shadow-sm'
+        }`}>
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
@@ -58,13 +57,13 @@ export default function HomePage() {
 
             {/* CTA Button */}
             <div className="hidden lg:block">
-              <a href="https://wa.me/201234567890" target="_blank" rel="noopener noreferrer" className="btn-primary-small">
+              <a href="https://wa.me/201002100785" target="_blank" rel="noopener noreferrer" className="btn-primary-small">
                 📞 استشارة مجانية
               </a>
             </div>
 
             {/* Mobile Menu Button */}
-            <button 
+            <button
               className="lg:hidden p-2 rounded-md hover:bg-gray-100 transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
@@ -84,7 +83,7 @@ export default function HomePage() {
               <button onClick={() => scrollToSection('products')} className="block w-full text-right py-2 px-4 hover:bg-gray-50 rounded-lg transition-colors">منتجاتنا</button>
               <button onClick={() => scrollToSection('testimonials')} className="block w-full text-right py-2 px-4 hover:bg-gray-50 rounded-lg transition-colors">آراء العملاء</button>
               <button onClick={() => scrollToSection('contact')} className="block w-full text-right py-2 px-4 hover:bg-gray-50 rounded-lg transition-colors">تواصل معنا</button>
-              <a href="https://wa.me/201234567890" target="_blank" rel="noopener noreferrer" className="block btn-primary text-center mt-4">
+              <a href="https://wa.me/201002100785" target="_blank" rel="noopener noreferrer" className="block btn-primary text-center mt-4">
                 📞 استشارة مجانية
               </a>
             </div>
@@ -108,9 +107,8 @@ export default function HomePage() {
       {/* Back to Top Button */}
       <button
         onClick={() => scrollToSection('hero')}
-        className={`fixed bottom-20 left-4 z-40 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 ${
-          isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
-        }`}
+        className={`fixed bottom-20 left-4 z-40 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+          }`}
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />

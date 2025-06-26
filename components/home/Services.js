@@ -88,11 +88,10 @@ export default function Services() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${
-                  activeService === index
+                className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${activeService === index
                     ? 'bg-blue-600 text-white shadow-xl scale-105'
                     : 'bg-white hover:bg-blue-50 shadow-lg hover:shadow-xl'
-                }`}
+                  }`}
                 onClick={() => setActiveService(index)}
               >
                 <div className="flex items-center space-x-4 space-x-reverse">
@@ -103,9 +102,8 @@ export default function Services() {
                       {service.description}
                     </p>
                   </div>
-                  <div className={`transform transition-transform duration-300 ${
-                    activeService === index ? 'rotate-90' : ''
-                  }`}>
+                  <div className={`transform transition-transform duration-300 ${activeService === index ? 'rotate-90' : ''
+                    }`}>
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
@@ -154,7 +152,7 @@ export default function Services() {
 
             {/* CTA Button */}
             <a
-              href="https://wa.me/201234567890"
+              href="https://wa.me/201002100785"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary w-full text-center"

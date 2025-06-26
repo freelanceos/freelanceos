@@ -17,7 +17,7 @@ export default function Services() {
         'أنظمة إدارة المحتوى',
         'ربط أنظمة الدفع'
       ],
-      price: 'من 1500 جنيه',
+      price: 'من ١٥٠٠ وحسب حجم المشروع',
       duration: '1-4 أسابيع'
     },
     {
@@ -32,7 +32,7 @@ export default function Services() {
         'تصميم وسائل التواصل الاجتماعي',
         'تصميم العروض التقديمية'
       ],
-      price: 'من 800 جنيه',
+      price: 'بداية من ٨٠٠ جنيه',
       duration: '3-7 أيام'
     },
     {
@@ -47,7 +47,7 @@ export default function Services() {
         'اختبارات وتقييمات',
         'شهادات إلكترونية'
       ],
-      price: 'من 2000 جنيه',
+      price: 'من ٥٠٠٠ جنيه',
       duration: '1-3 أسابيع'
     },
     {
@@ -62,7 +62,7 @@ export default function Services() {
         'تحليل البيانات والإحصائيات',
         'استراتيجيات النمو'
       ],
-      price: 'من 1200 جنيه/شهر',
+      price: 'من ١٥٠٠ جنيه/شهر',
       duration: 'خدمة شهرية'
     }
   ]
@@ -89,8 +89,8 @@ export default function Services() {
               <div
                 key={index}
                 className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${activeService === index
-                    ? 'bg-blue-600 text-white shadow-xl scale-105'
-                    : 'bg-white hover:bg-blue-50 shadow-lg hover:shadow-xl'
+                  ? 'bg-blue-600 text-white shadow-xl scale-105'
+                  : 'bg-white hover:bg-blue-50 shadow-lg hover:shadow-xl'
                   }`}
                 onClick={() => setActiveService(index)}
               >

@@ -64,7 +64,7 @@ export default function LoginForm() {
                         أدخل بيانات الدخول للوصول إلى لوحة التحكم
                     </p>
                 </div>
-                
+
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
@@ -121,9 +121,7 @@ export default function LoginForm() {
                         </button>
                     </div>
 
-                    <div className="text-center text-sm text-gray-600">
-                        للاختبار: admin@freelanceos.online / admin123
-                    </div>
+
                 </form>
             </div>
         </div>

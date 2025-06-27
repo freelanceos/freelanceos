@@ -22,11 +22,13 @@ export default async function handler(req, res) {
     // Import Resend only if configured
     const { Resend } = await import("resend");
     const resend = new Resend(resendApiKey);
-    const downloadLink = ${process.env.NEXT_PUBLIC_SITE_URL}/download?token=${order_id};
+
+    const downloadLink = `${process.env.NEXT_PUBLIC_SITE_URL}/download?token=${order_id}`;
+
     // Email content based on source
     const customerEmailContent = fromAdmin
       ? // Content when sent from admin panel
-        
+        `
         <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px;">
           <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
             <h1 style="color: #2563eb; text-align: center; font-size: 28px; margin-bottom: 20px;">🎉 مبروك ${name}! 🎉</h1>
@@ -37,7 +39,7 @@ export default async function handler(req, res) {
             </div>
             <div style="text-align: center; margin: 40px 0;">
               <p style="color: #666; margin-bottom: 20px;">يمكنك تحميل كتاب "رحلة الانتشار - دليل النجاح على تيك توك" من الرابط أدناه:</p>
-              <a href="${downloadLink}" style="background: linear-gradient(45deg, #28a745, #20c997); color: black; padding: 18px 40px; text-decoration: none; border-radius: 25px; display: inline-block; font-size: 18px; font-weight: bold; box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4); transition: all 0.3s;">
+              <a href="${downloadLink}" style="background: linear-gradient(45deg, #28a745, #20c997); color: Black; padding: 18px 40px; text-decoration: none; border-radius: 25px; display: inline-block; font-size: 18px; font-weight: bold; box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4); transition: all 0.3s;">
                 📚 تحميل الكتاب الآن
               </a>
             </div>
@@ -54,9 +56,9 @@ export default async function handler(req, res) {
             </p>
           </div>
         </div>
-      
+      `
       : // Content for automatic emails
-        
+        `
         <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8f9fa; padding: 20px; border-radius: 10px;">
           <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
             <h1 style="color: #2563eb; text-align: center; font-size: 24px;">شكراً لك ${name}!</h1>
@@ -70,7 +72,7 @@ export default async function handler(req, res) {
             </p>
           </div>
         </div>
-      ;
+      `;
 
     // Email to customer
     await resend.emails.send({
@@ -89,7 +91,7 @@ export default async function handler(req, res) {
         from: "FreelanceOS <admin@freelanceos.online>",
         to: adminEmail,
         subject: "طلب جديد - كتاب رحلة الانتشار",
-        html: 
+        html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8f9fa; padding: 20px; border-radius: 10px;">
             <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
               <h2 style="color: #dc3545; border-bottom: 2px solid #dc3545; padding-bottom: 10px;">🚨 طلب جديد تم تأكيده</h2>
@@ -107,15 +109,15 @@ export default async function handler(req, res) {
               </div>
             </div>
           </div>
-        ,
+        `,
       });
     }
 
     // Send WhatsApp automatically for new orders (not from admin)
     if (!fromAdmin) {
       try {
-        const downloadLink = ${process.env.NEXT_PUBLIC_SITE_URL}/download?token=${order_id};
-        const whatsappMessage = مرحباً ${name}،
+        const downloadLink = `${process.env.NEXT_PUBLIC_SITE_URL}/download?token=${order_id}`;
+        const whatsappMessage = `مرحباً ${name}،
 
 تم تأكيد طلبك لكتاب "رحلة الانتشار - دليل النجاح على تيك توك"
 
@@ -126,12 +128,12 @@ ${downloadLink}
 
 نتمنى لك قراءة ممتعة ونجاحاً باهراً على تيك توك!
 
-فريق FreelanceOS;
+فريق FreelanceOS`;
 
         const phoneNumber = phone.replace(/[^0-9]/g, '');
-        const whatsappNumber = phoneNumber.startsWith('01') ? 2${phoneNumber} : phoneNumber;
+        const whatsappNumber = phoneNumber.startsWith('01') ? `2${phoneNumber}` : phoneNumber;
         const encodedMessage = encodeURIComponent(whatsappMessage);
-        const whatsappUrl = https://wa.me/${whatsappNumber}?text=${encodedMessage};
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
         
         console.log('WhatsApp message prepared for automatic sending:', {
           customer: name,
@@ -158,6 +160,3 @@ ${downloadLink}
     res.status(500).json({ message: "Failed to send emails" });
   }
 }
-
-
-قال ChatGPT:

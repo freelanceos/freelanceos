@@ -39,7 +39,7 @@ export default async function handler(req, res) {
             </div>
             <div style="text-align: center; margin: 40px 0;">
               <p style="color: #666; margin-bottom: 20px;">يمكنك تحميل كتاب "رحلة الانتشار - دليل النجاح على تيك توك" من الرابط أدناه:</p>
-              <a href="${downloadLink}" style="background: linear-gradient(45deg, #28a745, #20c997); color: white; padding: 18px 40px; text-decoration: none; border-radius: 25px; display: inline-block; font-size: 18px; font-weight: bold; box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4); transition: all 0.3s;">
+              <a href="${downloadLink}" style="background: linear-gradient(45deg, #28a745, #20c997); color: black; padding: 18px 40px; text-decoration: none; border-radius: 25px; display: inline-block; font-size: 18px; font-weight: bold; box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4); transition: all 0.3s;">
                 📚 تحميل الكتاب الآن
               </a>
             </div>

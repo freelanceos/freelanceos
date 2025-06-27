@@ -28,7 +28,7 @@ export default function Home() {
         <meta name="robots" content="index, follow" />
         <meta name="author" content="FreelanceOS" />
         <link rel="icon" href="/favicon.ico" />
-<link rel="canonical" href="https://freelanceos.online" />
+        <link rel="canonical" href="https://freelanceos.online" />
       </Head>
       <HomePage />
     </>

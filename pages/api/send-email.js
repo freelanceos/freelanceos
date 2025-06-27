@@ -22,9 +22,7 @@ export default async function handler(req, res) {
     // Import Resend only if configured
     const { Resend } = await import("resend");
     const resend = new Resend(resendApiKey);
-
     const downloadLink = ${process.env.NEXT_PUBLIC_SITE_URL}/download?token=${order_id};
-
     // Email content based on source
     const customerEmailContent = fromAdmin
       ? // Content when sent from admin panel

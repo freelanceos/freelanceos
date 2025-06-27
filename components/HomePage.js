@@ -37,7 +37,7 @@ export default function HomePage() {
             {/* Logo */}
             <div className="h-16">
               <Image
-                src="/logo.png"
+                src="logo.png"
                 alt="FreelanceOSف"
                 width={120}
                 height={60}

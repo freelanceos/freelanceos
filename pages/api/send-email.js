@@ -37,11 +37,33 @@ export default async function handler(req, res) {
                 تهانينا! تم تأكيد طلبك من إدارة FreelanceOS وأصبح الكتاب جاهز للتحميل الآن.
               </p>
             </div>
-            <div style="text-align: center; margin: 40px 0;">
-              <p style="color: #666; margin-bottom: 20px;">يمكنك تحميل كتاب "رحلة الانتشار - دليل النجاح على تيك توك" من الرابط أدناه:</p>
-              <a href="${downloadLink}" style="background: linear-gradient(45deg, #28a745, #20c997); color: Black; padding: 18px 40px; text-decoration: none; border-radius: 25px; display: inline-block; font-size: 18px; font-weight: bold; box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4); transition: all 0.3s;">
-                📚 تحميل الكتاب الآن
-              </a>
+
+
+<div style="text-align: center; margin: 40px 0;">
+  <p style="color: #666; margin-bottom: 20px;">
+    يمكنك تحميل كتاب "رحلة الانتشار - دليل النجاح على تيك توك" من الرابط أدناه:
+  </p>
+  <a 
+    href="${downloadLink}" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    style="background: linear-gradient(45deg, #28a745, #20c997); 
+           color: white; 
+           padding: 18px 40px; 
+           text-decoration: none; 
+           border-radius: 25px; 
+           display: inline-block; 
+           font-size: 18px; 
+           font-weight: bold; 
+           box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4); 
+           transition: all 0.3s;">
+    📚 تحميل الكتاب الآن
+  </a>
+</div>
+
+
+
+            
             </div>
             <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; text-align: center; margin: 20px 0;">
               <p style="color: #155724; margin: 0; font-weight: 500;">✅ تم إرسال هذه الرسالة من إدارة FreelanceOS مباشرة</p>

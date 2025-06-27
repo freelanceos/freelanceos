@@ -36,14 +36,8 @@ export default function HomePage() {
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="h-16">
-              <Image
-                src="/logo/logo.png"
-                alt="FreelanceOSlo"
-                width={120}
-                height={60}
-                className="h-full w-auto"
-                priority
-              />
+             <img src="/logo.png" alt="FreelanceOS" width="120" height="60" />
+
             </div>
 
             {/* Desktop Menu */}

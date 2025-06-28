@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
@@ -48,7 +47,7 @@ export default function AdminDashboard() {
             // Fetch orders from Supabase
             const ordersResponse = await fetch('/api/admin/orders')
             const ordersData = await ordersResponse.json()
-            
+
             if (ordersData.success) {
                 setOrders(ordersData.orders)
             } else {
@@ -88,10 +87,10 @@ export default function AdminDashboard() {
             })
 
             const data = await response.json()
-            
+
             if (data.success) {
                 // Update local state
-                setOrders(orders.map(order => 
+                setOrders(orders.map(order =>
                     order.id === orderId ? { ...order, payment: newStatus } : order
                 ))
             } else {
@@ -120,7 +119,7 @@ export default function AdminDashboard() {
             })
 
             const data = await response.json()
-            
+
             if (response.ok) {
                 alert('🎉 تم إرسال الإيميل المخصص بنجاح للعميل من إدارة FreelanceOS')
             } else {
@@ -152,7 +151,7 @@ ${downloadLink}
         const whatsappNumber = phoneNumber.startsWith('01') ? `2${phoneNumber}` : phoneNumber
         const encodedMessage = encodeURIComponent(message)
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`
-        
+
         window.open(whatsappUrl, '_blank')
     }
 
@@ -177,8 +176,8 @@ ${downloadLink}
 
     const filteredOrders = orders.filter(order => {
         const matchesSearch = order.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                            order.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                            order.phone.includes(searchTerm)
+            order.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            order.phone.includes(searchTerm)
         const matchesStatus = statusFilter === 'all' || order.payment === statusFilter
         return matchesSearch && matchesStatus
     })
@@ -210,18 +209,18 @@ ${downloadLink}
         <div className="min-h-screen bg-gray-50" dir="rtl">
             {/* Header */}
             <header className="bg-white shadow-sm border-b border-gray-200">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center h-16">
+                <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+                    <div className="flex flex-col sm:flex-row justify-between items-center h-auto sm:h-16 py-2 sm:py-0 gap-2">
                         <div className="flex items-center space-x-4 space-x-reverse">
-                            <h1 className="text-xl font-bold text-gray-900">لوحة تحكم الإدارة</h1>
+                            <h1 className="text-lg sm:text-xl font-bold text-gray-900">لوحة تحكم الإدارة</h1>
                         </div>
                         <div className="flex items-center space-x-4 space-x-reverse">
-                            <span className="text-sm text-gray-600">
+                            <span className="text-xs sm:text-sm text-gray-600">
                                 مرحباً {admin?.email} - إدارة الطلبات ورسائل العملاء
                             </span>
                             <button
                                 onClick={handleLogout}
-                                className="bg-red-600 text-white px-4 py-2 rounded-md text-sm hover:bg-red-700 transition duration-200 flex items-center space-x-2 space-x-reverse"
+                                className="bg-red-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm hover:bg-red-700 transition duration-200 flex items-center space-x-2 space-x-reverse"
                             >
                                 <span>تسجيل الخروج</span>
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -233,37 +232,34 @@ ${downloadLink}
                 </div>
             </header>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-4 sm:py-8">
                 {/* Navigation Tabs */}
-                <div className="mb-8">
-                    <nav className="flex space-x-8 space-x-reverse">
+                <div className="mb-4 sm:mb-8 overflow-x-auto">
+                    <nav className="flex space-x-2 sm:space-x-8 space-x-reverse whitespace-nowrap">
                         <button
                             onClick={() => setSelectedTab('dashboard')}
-                            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                                selectedTab === 'dashboard' 
-                                    ? 'bg-blue-600 text-white' 
-                                    : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-                            }`}
+                            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium transition-colors ${selectedTab === 'dashboard'
+                                ? 'bg-blue-600 text-white'
+                                : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                                }`}
                         >
                             📊 تحديث البيانات
                         </button>
                         <button
                             onClick={() => setSelectedTab('orders')}
-                            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                                selectedTab === 'orders' 
-                                    ? 'bg-blue-600 text-white' 
-                                    : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-                            }`}
+                            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium transition-colors ${selectedTab === 'orders'
+                                ? 'bg-blue-600 text-white'
+                                : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                                }`}
                         >
                             🔄 تحديث البيانات
                         </button>
                         <button
                             onClick={() => setSelectedTab('settings')}
-                            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                                selectedTab === 'settings' 
-                                    ? 'bg-blue-600 text-white' 
-                                    : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-                            }`}
+                            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium transition-colors ${selectedTab === 'settings'
+                                ? 'bg-blue-600 text-white'
+                                : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                                }`}
                         >
                             ⚙️ التحديث التلقائي معطل
                         </button>
@@ -271,7 +267,7 @@ ${downloadLink}
                 </div>
 
                 {/* Stats Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
+                <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 mb-6 sm:mb-8">
                     <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
                         <div className="flex items-center justify-between">
                             <div>
@@ -334,35 +330,35 @@ ${downloadLink}
                 </div>
 
                 {/* Orders and Messages Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
                     {/* Recent Orders */}
-                    <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-                        <div className="px-6 py-4 border-b border-gray-200">
-                            <div className="flex items-center justify-between">
-                                <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-x-auto">
+                        <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200">
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                                <h3 className="text-base sm:text-lg font-semibold text-gray-900 flex items-center">
                                     <span className="ml-2">🛒</span>
                                     الطلبات ({stats.totalOrders})
                                 </h3>
-                                <button className="text-sm text-blue-600 hover:text-blue-700">
+                                <button className="text-xs sm:text-sm text-blue-600 hover:text-blue-700">
                                     تصدير CSV
                                 </button>
                             </div>
                         </div>
-                        <div className="p-6">
+                        <div className="p-4 sm:p-6">
                             {/* Search and Filters */}
-                            <div className="mb-4 space-y-3">
-                                <div className="flex space-x-3 space-x-reverse">
+                            <div className="mb-3 sm:mb-4 space-y-2 sm:space-y-3">
+                                <div className="flex flex-col sm:flex-row gap-2 sm:space-x-3 sm:space-x-reverse">
                                     <input
                                         type="text"
                                         placeholder="البحث في الطلبات..."
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
-                                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="flex-1 px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                     <select
                                         value={statusFilter}
                                         onChange={(e) => setStatusFilter(e.target.value)}
-                                        className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
                                         <option value="all">جميع الحالات</option>
                                         <option value="waiting">في الانتظار</option>
@@ -370,63 +366,61 @@ ${downloadLink}
                                         <option value="failed">فشل</option>
                                     </select>
                                 </div>
-                                <div className="flex space-x-2 space-x-reverse">
+                                <div className="flex flex-col sm:flex-row gap-2 sm:space-x-2 sm:space-x-reverse">
                                     <input
                                         type="text"
                                         placeholder="جمع الحالات"
-                                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                                        className="flex-1 px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-md text-xs sm:text-sm"
                                     />
                                     <input
                                         type="text"
                                         placeholder="جمع التواريخ"
-                                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                                        className="flex-1 px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-md text-xs sm:text-sm"
                                     />
                                     <input
                                         type="text"
                                         placeholder="مسح الفلاتر"
-                                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                                        className="flex-1 px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-md text-xs sm:text-sm"
                                     />
                                 </div>
                             </div>
 
                             {/* Orders List */}
-                            <div className="space-y-4">
+                            <div className="space-y-3 sm:space-y-4 min-w-[320px]">
                                 {filteredOrders.length > 0 ? filteredOrders.map((order) => (
-                                    <div key={order.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                                        <div className="flex items-center justify-between mb-3">
-                                            <div className="flex items-center space-x-3 space-x-reverse">
-                                                <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                                                    <span className="text-sm font-medium">👤</span>
+                                    <div key={order.id} className="border border-gray-200 rounded-lg p-3 sm:p-4 hover:shadow-md transition-shadow">
+                                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-2 sm:mb-3 gap-2">
+                                            <div className="flex items-center space-x-2 sm:space-x-3 space-x-reverse">
+                                                <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                                                    <span className="text-xs sm:text-sm font-medium">👤</span>
                                                 </div>
                                                 <div>
-                                                    <h4 className="font-medium text-gray-900">{order.name}</h4>
-                                                    <p className="text-sm text-gray-500">{order.email}</p>
+                                                    <h4 className="font-medium text-gray-900 text-sm sm:text-base">{order.name}</h4>
+                                                    <p className="text-xs sm:text-sm text-gray-500">{order.email}</p>
                                                 </div>
                                             </div>
-                                            <div className="flex items-center space-x-2 space-x-reverse">
-                                                <select 
+                                            <div className="flex items-center space-x-1 sm:space-x-2 space-x-reverse">
+                                                <select
                                                     value={order.payment}
                                                     onChange={(e) => updateOrderStatus(order.id, e.target.value)}
-                                                    className={`px-3 py-1 rounded-full text-sm border-0 ${getStatusColor(order.payment)}`}
+                                                    className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm border-0 ${getStatusColor(order.payment)}`}
                                                 >
                                                     <option value="waiting">waiting</option>
                                                     <option value="completed">completed</option>
                                                     <option value="failed">failed</option>
                                                 </select>
-                                                
-                                                {/* Send buttons for waiting and completed orders */}
                                                 {(order.payment === 'waiting' || order.payment === 'completed') && (
-                                                    <div className="flex space-x-1 space-x-reverse">
+                                                    <div className="flex space-x-0.5 sm:space-x-1 space-x-reverse">
                                                         <button
                                                             onClick={() => sendEmailToCustomer(order)}
-                                                            className="px-2 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600 flex items-center"
+                                                            className="px-1.5 sm:px-2 py-0.5 bg-blue-500 text-white rounded text-xs hover:bg-blue-600 flex items-center"
                                                             title="إرسال عبر الإيميل"
                                                         >
                                                             📧
                                                         </button>
                                                         <button
                                                             onClick={() => sendWhatsAppToCustomer(order)}
-                                                            className="px-2 py-1 bg-green-500 text-white rounded text-xs hover:bg-green-600 flex items-center"
+                                                            className="px-1.5 sm:px-2 py-0.5 bg-green-500 text-white rounded text-xs hover:bg-green-600 flex items-center"
                                                             title="إرسال عبر واتساب"
                                                         >
                                                             💬
@@ -435,7 +429,7 @@ ${downloadLink}
                                                 )}
                                             </div>
                                         </div>
-                                        <div className="text-sm text-gray-600 space-y-1">
+                                        <div className="text-xs sm:text-sm text-gray-600 space-y-0.5 sm:space-y-1">
                                             <p>📧 {order.email}</p>
                                             <p>📱 {order.phone}</p>
                                             <p>💳 {order.payment}</p>
@@ -444,7 +438,7 @@ ${downloadLink}
                                         </div>
                                     </div>
                                 )) : (
-                                    <div className="text-center py-8 text-gray-500">
+                                    <div className="text-center py-6 sm:py-8 text-gray-500">
                                         <p>لا توجد طلبات</p>
                                     </div>
                                 )}
@@ -453,20 +447,20 @@ ${downloadLink}
                     </div>
 
                     {/* Recent Messages */}
-                    <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-                        <div className="px-6 py-4 border-b border-gray-200">
-                            <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 mt-4 lg:mt-0">
+                        <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200">
+                            <h3 className="text-base sm:text-lg font-semibold text-gray-900 flex items-center">
                                 <span className="ml-2">💬</span>
                                 رسائل الاتصال (1)
                             </h3>
                         </div>
-                        <div className="p-6">
-                            <div className="text-center py-8 text-gray-500">
-                                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <span className="text-2xl">📭</span>
+                        <div className="p-4 sm:p-6">
+                            <div className="text-center py-6 sm:py-8 text-gray-500">
+                                <div className="w-12 sm:w-16 h-12 sm:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                                    <span className="text-xl sm:text-2xl">📭</span>
                                 </div>
-                                <p className="text-lg font-medium mb-2">لا توجد رسائل جديدة</p>
-                                <p className="text-sm">الرسائل والاستفسارات ستظهر هنا</p>
+                                <p className="text-base sm:text-lg font-medium mb-1 sm:mb-2">لا توجد رسائل جديدة</p>
+                                <p className="text-xs sm:text-sm">الرسائل والاستفسارات ستظهر هنا</p>
                             </div>
                         </div>
                     </div>

@@ -53,8 +53,8 @@ export default function LoginForm() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full space-y-8 bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100">
+        <div className="min-h-screen flex flex-col justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-4 sm:py-12 px-2 sm:px-4 lg:px-8 overflow-y-auto">
+            <div className="w-full max-w-sm sm:max-w-md mx-auto space-y-8 bg-white rounded-2xl shadow-xl p-4 sm:p-8 border border-gray-100">
                 <div className="flex flex-col items-center">
                     <div className="bg-indigo-100 rounded-full p-3 mb-2">
                         <svg className="w-10 h-10 text-indigo-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -81,7 +81,7 @@ export default function LoginForm() {
                                 type="email"
                                 autoComplete="email"
                                 required
-                                className="appearance-none block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-base transition"
+                                className="appearance-none block w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-base text-sm transition"
                                 placeholder="البريد الإلكتروني"
                                 value={formData.email}
                                 onChange={handleChange}
@@ -98,7 +98,7 @@ export default function LoginForm() {
                                 type="password"
                                 autoComplete="current-password"
                                 required
-                                className="appearance-none block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-base transition"
+                                className="appearance-none block w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-base text-sm transition"
                                 placeholder="كلمة المرور"
                                 value={formData.password}
                                 onChange={handleChange}
@@ -119,7 +119,7 @@ export default function LoginForm() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-base font-bold rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                            className="group relative w-full flex justify-center py-2.5 sm:py-3 px-4 border border-transparent text-base font-bold rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400 disabled:opacity-50 disabled:cursor-not-allowed transition"
                         >
                             {loading ? (
                                 <span className="flex items-center gap-2">

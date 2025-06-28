@@ -206,7 +206,7 @@ ${downloadLink}
     }
 
     return (
-        <div className="min-h-screen bg-gray-50" dir="rtl">
+        <div className="min-h-screen flex flex-col bg-gray-50 overflow-y-auto" dir="rtl">
             {/* Header */}
             <header className="bg-white shadow-sm border-b border-gray-200">
                 <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
@@ -232,7 +232,7 @@ ${downloadLink}
                 </div>
             </header>
 
-            <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-4 sm:py-8">
+            <div className="flex-1 w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-4 sm:py-8">
                 {/* Navigation Tabs */}
                 <div className="mb-4 sm:mb-8 overflow-x-auto">
                     <nav className="flex space-x-2 sm:space-x-8 space-x-reverse whitespace-nowrap">

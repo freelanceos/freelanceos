@@ -53,26 +53,26 @@ export default function LoginForm() {
     }
 
     return (
-        <div className="min-h-screen flex flex-col justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-4 sm:py-12 px-2 sm:px-4 lg:px-8 overflow-y-auto">
-            <div className="w-full max-w-sm sm:max-w-md mx-auto space-y-8 bg-white rounded-2xl shadow-xl p-4 sm:p-8 border border-gray-100">
-                <div className="flex flex-col items-center">
-                    <div className="bg-indigo-100 rounded-full p-3 mb-2">
-                        <svg className="w-10 h-10 text-indigo-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <div className="min-h-screen flex flex-col justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-2 sm:py-8 px-2 sm:px-4 lg:px-8 overflow-y-auto">
+            <div className="w-full max-w-xs sm:max-w-sm mx-auto bg-white rounded-2xl shadow-lg p-3 sm:p-6 border border-gray-100">
+                <div className="flex flex-col items-center mb-2">
+                    <div className="bg-indigo-100 rounded-full p-3 mb-1">
+                        <svg className="w-12 h-12 text-indigo-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 11c1.657 0 3-1.343 3-3V7a3 3 0 10-6 0v1c0 1.657 1.343 3 3 3zm6 2v5a2 2 0 01-2 2H8a2 2 0 01-2-2v-5a6 6 0 1112 0z" />
                         </svg>
                     </div>
-                    <h2 className="mt-2 text-center text-2xl font-extrabold text-gray-900">
+                    <h2 className="mt-1 text-center text-xl font-extrabold text-gray-900">
                         تسجيل دخول المدير
                     </h2>
-                    <p className="mt-1 text-center text-sm text-gray-500">
+                    <p className="mt-1 text-center text-xs text-gray-500">
                         أدخل بيانات الدخول للوصول إلى لوحة التحكم
                     </p>
                 </div>
 
-                <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
-                    <div className="rounded-xl shadow-sm space-y-4">
+                <form className="mt-3 space-y-4" onSubmit={handleSubmit}>
+                    <div className="rounded-xl shadow-sm space-y-3">
                         <div>
-                            <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-700">
+                            <label htmlFor="email" className="block mb-1 text-xs font-medium text-gray-700">
                                 البريد الإلكتروني
                             </label>
                             <input
@@ -81,7 +81,7 @@ export default function LoginForm() {
                                 type="email"
                                 autoComplete="email"
                                 required
-                                className="appearance-none block w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-base text-sm transition"
+                                className="appearance-none block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 text-sm transition"
                                 placeholder="البريد الإلكتروني"
                                 value={formData.email}
                                 onChange={handleChange}
@@ -89,7 +89,7 @@ export default function LoginForm() {
                             />
                         </div>
                         <div>
-                            <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-700">
+                            <label htmlFor="password" className="block mb-1 text-xs font-medium text-gray-700">
                                 كلمة المرور
                             </label>
                             <input
@@ -98,7 +98,7 @@ export default function LoginForm() {
                                 type="password"
                                 autoComplete="current-password"
                                 required
-                                className="appearance-none block w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-base text-sm transition"
+                                className="appearance-none block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 text-sm transition"
                                 placeholder="كلمة المرور"
                                 value={formData.password}
                                 onChange={handleChange}
@@ -108,8 +108,8 @@ export default function LoginForm() {
                     </div>
 
                     {error && (
-                        <div className="rounded-md bg-red-50 p-3">
-                            <div className="text-sm text-red-700 text-center">
+                        <div className="rounded-md bg-red-50 p-2">
+                            <div className="text-xs text-red-700 text-center">
                                 {error}
                             </div>
                         </div>
@@ -119,7 +119,7 @@ export default function LoginForm() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="group relative w-full flex justify-center py-2.5 sm:py-3 px-4 border border-transparent text-base font-bold rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-bold rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400 disabled:opacity-50 disabled:cursor-not-allowed transition"
                         >
                             {loading ? (
                                 <span className="flex items-center gap-2">

@@ -7,7 +7,7 @@ async function createFirstAdmin() {
 
         // You can modify these values or make them configurable
         const email = 'admin@example.com'
-        const password = 'admin123'
+        const password = '123'
         const role = 'admin'
 
         const admin = await createAdminAccount(email, password, role)

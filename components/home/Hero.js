@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <section id="hero" className="py-20 lg:py-32 bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-4xl mx-auto">
           {/* Main Heading */}
@@ -10,10 +10,10 @@ export default function Hero() {
               في العالم الرقمي
             </span>
           </h1>
-          
+
           {/* Description */}
           <p className="text-lg lg:text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            فريق متخصص في البرمجة، التصميم، والتعليم الإلكتروني. نقدم حلولًا عملية ومبتكرة 
+            فريق متخصص في البرمجة، التصميم، والتعليم الإلكتروني. نقدم حلولًا عملية ومبتكرة
             تساعد الأفراد والشركات على النمو والتوسع في السوق الرقمي.
           </p>
 

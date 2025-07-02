@@ -22,7 +22,7 @@ export default function WhatsAppButton() {
   return (
     <>
       {/* WhatsApp Float Button */}
-      <div className="fixed bottom-6 left-6 z-50">
+      <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={handleWhatsAppClick}
           className={`group relative bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 ${isAnimating ? 'scale-95' : ''
@@ -47,9 +47,9 @@ export default function WhatsAppButton() {
       </div>
 
       {/* Quick Message Popup (Optional) */}
-      <div className="fixed bottom-24 left-6 z-40 max-w-xs">
+      <div className="fixed bottom-24 right-6 z-40 max-w-xs">
         <div className="bg-white rounded-lg shadow-xl border border-gray-200 p-4 transform transition-all duration-500 hover:scale-105">
-          <div className="flex items-start space-x-3 space-x-reverse">
+          <div className="flex items-start space-x-3">
             <div className="flex-shrink-0">
               <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
                 <span className="text-white text-lg">👋</span>

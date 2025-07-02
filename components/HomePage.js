@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Hero from './home/Hero'
 import Services from './home/Services'
 import DigitalProducts from './home/DigitalProducts'
+import OurWorks from './home/OurWorks'
 import Testimonials from './home/Testimonials'
 import ContactCTA from './home/ContactCTA'
 import WhatsAppButton from './home/WhatsAppButton'
@@ -36,7 +37,7 @@ export default function HomePage() {
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="h-16">
-             <img src="/logo.png" alt="FreelanceOS" width="120" height="60" />
+              <img src="/logo.png" alt="FreelanceOS" width="120" height="60" />
 
             </div>
 
@@ -45,7 +46,7 @@ export default function HomePage() {
               <button onClick={() => scrollToSection('hero')} className="nav-link">الرئيسية</button>
               <button onClick={() => scrollToSection('services')} className="nav-link">خدماتنا</button>
               <button onClick={() => scrollToSection('products')} className="nav-link">منتجاتنا</button>
-              <button onClick={() => scrollToSection('testimonials')} className="nav-link">آراء العملاء</button>
+              <button onClick={() => scrollToSection('ourworks')} className="nav-link">أحدث أعمالنا</button>
               <button onClick={() => scrollToSection('contact')} className="nav-link">تواصل معنا</button>
             </div>
 
@@ -75,7 +76,7 @@ export default function HomePage() {
               <button onClick={() => scrollToSection('hero')} className="block w-full text-right py-2 px-4 hover:bg-gray-50 rounded-lg transition-colors">الرئيسية</button>
               <button onClick={() => scrollToSection('services')} className="block w-full text-right py-2 px-4 hover:bg-gray-50 rounded-lg transition-colors">خدماتنا</button>
               <button onClick={() => scrollToSection('products')} className="block w-full text-right py-2 px-4 hover:bg-gray-50 rounded-lg transition-colors">منتجاتنا</button>
-              <button onClick={() => scrollToSection('testimonials')} className="block w-full text-right py-2 px-4 hover:bg-gray-50 rounded-lg transition-colors">آراء العملاء</button>
+              <button onClick={() => scrollToSection('ourworks')} className="block w-full text-right py-2 px-4 hover:bg-gray-50 rounded-lg transition-colors">أحدث أعمالنا</button>
               <button onClick={() => scrollToSection('contact')} className="block w-full text-right py-2 px-4 hover:bg-gray-50 rounded-lg transition-colors">تواصل معنا</button>
               <a href="https://wa.me/201002100785" target="_blank" rel="noopener noreferrer" className="block btn-primary text-center mt-4">
                 📞 استشارة مجانية
@@ -91,6 +92,7 @@ export default function HomePage() {
         <Hero />
         <Services />
         <DigitalProducts />
+        <OurWorks />
         <Testimonials />
         <ContactCTA />
       </div>

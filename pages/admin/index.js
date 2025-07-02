@@ -269,6 +269,27 @@ ${downloadLink}
                 {/* Dynamic Tab Content */}
                 {selectedTab === 'dashboard' && (
                     <>
+                        {/* New: Latest Work Section */}
+                        <div className="mb-8">
+                            <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6 flex flex-col sm:flex-row items-center gap-6">
+                                <div className="flex-shrink-0 w-full sm:w-48">
+                                    <img src="/logo/book.png" alt="Arabic Academy Website Screenshot" className="rounded-lg shadow-md w-full object-cover" style={{ maxHeight: '120px' }} />
+                                </div>
+                                <div className="flex-1">
+                                    <h2 className="text-lg font-bold text-gray-900 mb-1">أحدث أعمالنا</h2>
+                                    <p className="text-gray-700 text-sm mb-2">
+                                        <span className="font-semibold text-blue-700">مجمع اللغة العربية بالقاهرة</span> هو منصة معرفية متكاملة تهدف إلى خدمة اللغة العربية عبر الإنترنت، وتضم معاجم لغوية، إصدارات علمية، أخبار ومقالات، وقاعدة بيانات ضخمة للباحثين والمهتمين. تم تطوير الموقع ليكون سريعاً، متجاوباً، وسهل الاستخدام لجميع الفئات.
+                                    </p>
+                                    <ul className="list-disc pr-5 text-gray-600 text-xs mb-2">
+                                        <li>تصميم عصري متجاوب مع جميع الأجهزة</li>
+                                        <li>محرك بحث متقدم في المعاجم والمحتوى</li>
+                                        <li>لوحة تحكم للإدارة وتحديث المحتوى بسهولة</li>
+                                        <li>دعم لغوي وتقني متكامل</li>
+                                    </ul>
+                                    <a href="https://www.arabicacademy.gov.eg/ar" target="_blank" rel="noopener noreferrer" className="inline-block mt-1 px-4 py-2 bg-blue-600 text-white rounded-lg font-bold shadow hover:bg-blue-700 transition">زيارة الموقع</a>
+                                </div>
+                            </div>
+                        </div>
                         {/* Stats Cards */}
                         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 mb-6 sm:mb-8">
                             <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">

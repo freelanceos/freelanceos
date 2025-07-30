@@ -51,54 +51,11 @@ export default function N8nBookLanding() {
                                 {/* Book Preview */}
                                 <div className="text-center lg:text-right" dir="rtl">
                                     <div className="inline-flex items-center justify-center w-80 h-96 rounded-3xl mb-8 shadow-2xl bg-white">
-                                        <div className="w-full h-full bg-gradient-to-br from-teal-500 to-cyan-600 rounded-3xl p-8 flex flex-col justify-between">
-                                            {/* n8n Logo */}
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
-                                                    <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
-                                                    </svg>
-                                                </div>
-                                                <span className="text-white font-bold text-3xl">n8n</span>
-                                            </div>
-
-                                            {/* Main Title */}
-                                            <div className="text-center">
-                                                <h3 className="text-white font-bold text-4xl mb-3">تعلم الاتمتة</h3>
-                                                <p className="text-white font-semibold text-2xl">عن طريق n8n</p>
-                                                <p className="text-white text-lg mt-2">للمبتدئين</p>
-                                            </div>
-
-                                            {/* Automation Icons */}
-                                            <div className="flex justify-center items-center gap-6">
-                                                <div className="w-12 h-12 bg-green-500 rounded flex items-center justify-center">
-                                                    <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                                                    </svg>
-                                                </div>
-                                                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                                                    <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
-                                                    </svg>
-                                                </div>
-                                                <div className="w-12 h-12 bg-green-500 rounded flex items-center justify-center">
-                                                    <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-                                                    </svg>
-                                                </div>
-                                                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                                                    <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5zM15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
-                                                    </svg>
-                                                </div>
-                                            </div>
-
-                                            {/* Footer */}
-                                            <div className="text-center">
-                                                <p className="text-white text-lg font-semibold">FreelanceOs</p>
-                                            </div>
-                                        </div>
+                                        <img
+                                            src="/n8n-basic-book.png"
+                                            alt="كتاب تعلم الاتمتة عن طريق n8n للمبتدئين"
+                                            className="w-full h-full object-cover rounded-3xl"
+                                        />
                                     </div>
 
                                     {/* Book Features */}
@@ -275,7 +232,17 @@ export default function N8nBookLanding() {
                                     <p className="text-gray-600">كتاب "أمثلة عملية من المتقدم حتى الاحتراف"</p>
                                 </div>
 
-                                <div className="grid md:grid-cols-2 gap-6">
+                                <div className="grid md:grid-cols-3 gap-6">
+                                    {/* Gift Book Image */}
+                                    <div className="flex justify-center">
+                                        <div className="inline-flex items-center justify-center w-48 h-56 rounded-2xl shadow-lg bg-white">
+                                            <img
+                                                src="/n8n-advanced-book.png"
+                                                alt="كتاب أمثلة عملية من المتقدم حتى الاحتراف - هدية مجانية"
+                                                className="w-full h-full object-cover rounded-2xl"
+                                            />
+                                        </div>
+                                    </div>
                                     <div className="bg-white rounded-xl p-6 shadow-sm" dir="rtl">
                                         <h4 className="text-lg font-bold text-gray-900 mb-3">📚 محتوى الهدية</h4>
                                         <ul className="space-y-2 text-gray-700">

@@ -247,10 +247,10 @@ export default function N8nBookLanding() {
                                 <div className="bg-gray-50 rounded-2xl p-6" dir="rtl">
                                     <h3 className="text-xl font-bold text-gray-900 mb-4">📊 المحتوى</h3>
                                     <ul className="space-y-2 text-gray-700">
-                                        <li>• 30 صفحة من المحتوى الشامل</li>
+                                        <li>• 36 صفحة من المحتوى الشامل</li>
                                         <li>• 5 فصول رئيسية</li>
-                                        <li>• 15 مثال عملي</li>
-                                        <li>• 10 workflow جاهز للاستخدام</li>
+                                        <li>• امثلة عملية</li>
+                                        <li>•  workflow جاهز للاستخدام</li>
                                         <li>• شروحات مفصلة بالصور</li>
                                     </ul>
                                 </div>

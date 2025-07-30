@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Hero from './home/Hero'
 import Services from './home/Services'
 import DigitalProducts from './home/DigitalProducts'
+import N8nAutomationBook from './home/N8nAutomationBook'
+import N8nAdvancedBook from './home/N8nAdvancedBook'
 import OurWorks from './home/OurWorks'
 import Testimonials from './home/Testimonials'
 import ContactCTA from './home/ContactCTA'
@@ -92,6 +94,8 @@ export default function HomePage() {
         <Hero />
         <Services />
         <DigitalProducts />
+        <N8nAutomationBook />
+        <N8nAdvancedBook />
         <OurWorks />
         <Testimonials />
         <ContactCTA />

@@ -8,14 +8,14 @@ export default async function handler(req, res) {
   console.log('Save order request received:', req.body)
 
   try {
-    const { name, email, phone } = req.body
+    const { name, email, phone, productName, productPrice, productType } = req.body
 
     // Basic validation
     if (!name || !email || !phone) {
       console.log('Validation failed: missing required fields')
-      return res.status(400).json({ 
+      return res.status(400).json({
         message: 'بيانات غير مكتملة',
-        success: false 
+        success: false
       })
     }
 
@@ -23,7 +23,10 @@ export default async function handler(req, res) {
     const order = await createOrder({
       name,
       email,
-      phone
+      phone,
+      productName: productName || 'المنتج',
+      productPrice: productPrice || '0',
+      productType: productType || 'product'
     })
 
     console.log('Order saved successfully:', order.id)
@@ -36,7 +39,7 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Order saving error:', error)
-    res.status(500).json({ 
+    res.status(500).json({
       message: 'حدث خطأ في حفظ الطلب',
       success: false,
       error: process.env.NODE_ENV === 'development' ? error.message : undefined

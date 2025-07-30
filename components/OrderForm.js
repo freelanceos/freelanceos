@@ -1,10 +1,13 @@
 import { useState } from "react";
 
-export default function OrderForm() {
+export default function OrderForm({ productName = "المنتج", productPrice = "0", productType = "product", onClose }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
+    productName: productName,
+    productPrice: productPrice,
+    productType: productType,
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -54,7 +57,12 @@ export default function OrderForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          productName: formData.productName,
+          productPrice: formData.productPrice,
+          productType: formData.productType,
+        }),
       });
 
       const data = await response.json();
@@ -73,6 +81,9 @@ export default function OrderForm() {
             body: JSON.stringify({
               ...formData,
               orderId: data.order_id,
+              productName: formData.productName,
+              productPrice: formData.productPrice,
+              productType: formData.productType,
             }),
           });
         } catch (emailError) {
@@ -112,15 +123,27 @@ export default function OrderForm() {
           تم تأكيد طلبك بنجاح!
         </h3>
         <p className="text-green-700 mb-6">
-          سنرسل لك رابط تحميل الكتاب على البريد الإلكتروني وعبر الواتساب خلال 5 دقائق.
+          سنرسل لك رابط تحميل {productName} على البريد الإلكتروني وعبر الواتساب خلال 5 دقائق.
           <br />
           تأكد من مراجعة صندوق الرسائل غير المرغوب فيها أيضاً.
         </p>
         <div className="bg-white p-4 rounded-lg shadow-inner">
           <p className="text-sm text-gray-600">
             📧 البريد المرسل إليه: <strong>{formData.email}</strong>
+            <br />
+            📦 المنتج: <strong>{productName}</strong>
+            <br />
+            💰 السعر: <strong>{productPrice} جنيه مصري</strong>
           </p>
         </div>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
+          >
+            إغلاق
+          </button>
+        )}
       </div>
     );
   }
@@ -129,7 +152,7 @@ export default function OrderForm() {
     <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-center">
         <h3 className="text-xl font-bold text-white mb-2">
-          املأ بياناتك للحصول على الكتاب نفس بيانات الدفع
+          املأ بياناتك للحصول على {productName}
         </h3>
         <p className="text-blue-100 text-sm">
           سيتم إرسال رابط التحميل على بريدك الإلكتروني فوراً
@@ -206,11 +229,10 @@ export default function OrderForm() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all ${
-              loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105"
-            }`}
+            className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all ${loading
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105"
+              }`}
           >
             {loading ? (
               <div className="flex items-center justify-center space-x-2 space-x-reverse">
@@ -218,7 +240,7 @@ export default function OrderForm() {
                 <span>جاري الإرسال...</span>
               </div>
             ) : (
-              "📨     شكرا لك سوف يتم ارسال رابط التحميل  "
+              `📨 شكرا لك سوف يتم ارسال رابط تحميل ${productName}`
             )}
           </button>
         </form>

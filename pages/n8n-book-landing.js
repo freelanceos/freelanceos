@@ -54,7 +54,7 @@ export default function N8nBookLanding() {
                                         <img
                                             src="/n8n-basic-book.png"
                                             alt="كتاب تعلم الاتمتة عن طريق n8n للمبتدئين"
-                                            className="w-full h-full object-cover rounded-3xl"
+                                            className="w-full h-full object-contain rounded-3xl"
                                         />
                                     </div>
 
@@ -239,7 +239,7 @@ export default function N8nBookLanding() {
                                             <img
                                                 src="/n8n-advanced-book.png"
                                                 alt="كتاب أمثلة عملية من المتقدم حتى الاحتراف - هدية مجانية"
-                                                className="w-full h-full object-cover rounded-2xl"
+                                                className="w-full h-full object-contain rounded-3xl"
                                             />
                                         </div>
                                     </div>

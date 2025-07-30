@@ -23,7 +23,7 @@ export default function N8nAutomationBook() {
                                     <img
                                         src="/n8n-basic-book.png"
                                         alt="كتاب تعلم الاتمتة عن طريق n8n للمبتدئين"
-                                        className="w-full h-full object-cover rounded-3xl"
+                                        className="w-full h-full object-contain rounded-3xl"
                                     />
                                 </div>
                                 <div className="space-y-2">

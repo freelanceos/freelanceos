@@ -2,6 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/n8n-book-landing": "pages/n8n-book-landing.js",
-  "/home": "pages/home.js"
+  "/home": "pages/home.js",
+  "/book-landing": "pages/book-landing.js",
+  "/n8n-book-landing": "pages/n8n-book-landing.js"
 }
